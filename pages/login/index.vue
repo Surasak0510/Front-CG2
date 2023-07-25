@@ -3,7 +3,7 @@
 
         <div class="position-absolute" style="top: 5vh; right: 0;">
             <div class="row m-0">
-                <span>Don’t have an account ? <a href="login/SingUp">Sing Up</a></span>
+                <span>Don’t have an account ? <a href="login/singup">Sing Up</a></span>
             </div>
         </div>
 
@@ -24,10 +24,10 @@
                                     </div>
     
                                     <div class="input-group my-3">
-                                        <input v-if="ShowPass" type="password" class="form-control py-4" placeholder="Password" v-model="Password"
+                                        <input type="password" class="form-control py-4" placeholder="Password" v-model="Password"
                                             style="border: 1px solid  ##A6A6A6;  border-radius: 25px;">
-                                        <input v-else type="text" class="form-control py-4" placeholder="Password" v-model="Password"
-                                            style="border: 1px solid  ##A6A6A6;  border-radius: 25px;">
+                                        <!-- <input v-else type="text" class="form-control py-4" placeholder="Password" v-model="Password"
+                                            style="border: 1px solid  ##A6A6A6;  border-radius: 25px;"> -->
                                     </div>
     
                                     <button type="submit" class="btn btn btn-block color-main py-2"
