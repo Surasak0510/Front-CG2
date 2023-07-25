@@ -3,7 +3,7 @@
 
         <div class="position-absolute" style="top: 5vh; right: 0;">
             <div class="row m-0">
-                <span>Don’t have an account ? <a @click="part()" style="color: blue; cursor: pointer;">Sing Up</a></span>
+                <span>Don’t have an account ? <a href="login/SingUp">Sing Up</a></span>
             </div>
         </div>
 
@@ -91,11 +91,6 @@ export default {
             Password: ""
         }
     },
-    methods: {
-        part() {
-            window.location = "login/singup"
-        }
-    }
 }
 
 </script>
