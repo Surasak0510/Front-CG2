@@ -3,7 +3,7 @@
 
         <div class="position-absolute" style="top: 5vh; right: 0;">
             <div class="row m-0">
-                <span>Don’t have an account ? <a href="/singup">Sing Up</a></span>
+                <span>Don’t have an account ? <nuxt-link to="login/singup">Sing Up</nuxt-link></span>
             </div>
         </div>
 
