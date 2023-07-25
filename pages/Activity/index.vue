@@ -75,7 +75,7 @@
 export default {
     data() {
         return{
-            Store_id: "",
+            store: "",
             tel: "",
             Store: {
                 name: "Cafe Amazon",
@@ -89,8 +89,19 @@ export default {
 
     },
     mounted() {
-        this.Store_id = this.$route.query.ID
-        console.log(this.Store_id)
+        this.store = this.$route.query.store
+        console.log(this.store)
+        if(this.store === null || this.store === undefined) {
+            console.log("Testtt")
+            this.$swal({
+                icon: 'error',
+                title: 'No shop id',
+                text: 'Something went wrong!',
+                // confirmButtonText: 'Ok',
+            }).then((result) => {
+                window.location = "/"
+            })
+        }
 
     }
 }
