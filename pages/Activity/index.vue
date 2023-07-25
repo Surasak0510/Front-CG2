@@ -28,13 +28,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
-                                <a class="btn p-4 rounded-pill" id="show-btn" @click="$bvModal.show('Collect')" role="button" style="background-color: #5EEECA;"><h1 class="fw-bold" style="color: #0A755A;">Collect points</h1></a>
+                                <a class="btn p-4 rounded-pill" id="show-btn" @click="$bvModal.show('Collect')" role="button" style="background-color: #5EEECA;"><h1 class="fw-bold" style="color: #0A755A;">สะสมคะแนน</h1></a>
                             </div>
                             <div class="row my-5 position-relative" style="border-bottom: 1px solid #A19999;">
                                 <p class="fs-4 position-absolute" style="background-color: #ECF0EE; width: 5vh; top: -15px; right: 47%;">OR</p>    
                             </div>
                             <div class="row">
-                                <a class="btn p-4 rounded-pill" id="show-btn" @click="$bvModal.show('Redeem')" role="button" style="background-color: #FAF7B8;"><h1 class="fw-bold" style="color: #0A755A;">Redeem points</h1></a>
+                                <a class="btn p-4 rounded-pill" id="show-btn" @click="$bvModal.show('Redeem')" role="button" style="background-color: #FAF7B8;"><h1 class="fw-bold" style="color: #0A755A;">แลกคะแนน</h1></a>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="Collect" hide-footer>
+        <b-modal id="Collect" centered hide-footer>
             <template #modal-title>
                 <Strong><h1 style="color: #00CC99; ">Phone Number</h1></Strong>
             </template>
@@ -52,11 +52,11 @@
                 <input  type="number" class="form-control rounded-4" placeholder="Number" v-model="tel">
             </div>
             <!-- {{ tel }} -->
-            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/type?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #0C68F2;">confirm</b-button>
+            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/type?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">confirm</b-button>
         </b-modal>
 
         <!-- Modal -->
-        <b-modal id="Redeem" hide-footer>
+        <b-modal id="Redeem" centered hide-footer>
             <template #modal-title>
                 <Strong><h1 style="color: #00CC99;">Phone Number</h1></Strong>
             </template>
@@ -64,7 +64,7 @@
                 <input  type="number" class="form-control rounded-4" placeholder="Number" v-model="tel">
             </div>
             <!-- {{ tel }} -->
-            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/redeem?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #0C68F2;">confirm</b-button>
+            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/redeem?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">confirm</b-button>
         </b-modal>
 
     </div>

@@ -46,7 +46,7 @@
                         <h5 v-if="item.desc === ''" class="text-center my-3">Nodata...</h5>
                         <h5 v-else class="text-center m-3">{{ item.desc }}</h5>
                         <!-- <input type="checkbox" id="yes" name="yes" :value="item.Item_id" v-model="check" /> -->
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" :value="item.Item_id" v-model="check" style="top: 1vh; right: 2vh; width: 20%; height: 3vh;">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" :value="item" v-model="check" style="top: 1vh; right: 2vh; width: 20%; height: 3vh;">
                     </div>
                 </div>
                 {{ check }}
@@ -73,43 +73,63 @@ Vue.use(VueSweetalert2);
 export default {
     data() {
         return {
+            UserPoint: 0,
+            sumpoint: 0,
             store: "",
+            StoreImg: "https://unsplash.it/400/200",
             tel: "",
             check: [],
             type:[
                 {
                     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjBtmD2IIHrxQC4NiVg458a9gK8JgIRXtsw&usqp=CAU",
                     desc: "123",
-                    Item_id: "1001"
+                    Item_id: "1001",
+                    point: 100
                 },
                 {
                     img: "",
                     desc: "",
-                    Item_id: "1002"
+                    Item_id: "1002",
+                    point: 100
                 },
                 {
                     img: "",
                     desc: "",
-                    Item_id: "1003"
+                    Item_id: "1003",
+                    point: 100
                 },
                 {
                     img: "",
                     desc: "",
-                    Item_id: "1004"
+                    Item_id: "1004",
+                    point: 100
                 },
             ]
         }
     },
     methods: {
         postpoint() {
+
+            for (let i = 0; i < this.check.length; i++) {
+                this.sumpoint = this.sumpoint + this.check[i].point;
+                // console.log(this.sumpoint)
+            }
+
+
             this.$swal({
-                title: 'The score obtained.',
-                text: this.tel,
-                imageUrl: 'https://unsplash.it/400/200',
+                title:this.tel + " ได้รับ " + this.sumpoint + " point",
+                text: "ยอดคงเหลือ " + (this.UserPoint + this.sumpoint) + " point",
+                imageUrl: this.StoreImg,
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'Custom image',
-                })
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = `/activity?store=${this.store}`
+                    }
+                    })
         }
     },
     mounted() {
