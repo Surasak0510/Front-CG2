@@ -19,13 +19,14 @@ export default {
     { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' },
     { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/cdbootstrap/css/cdb.min.css' },
     { rel: 'stylesheet', href: 'https://unpkg.com/aos@2.3.4/dist/aos.css' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com' },
-    { rel: 'stylesheet', href: 'https://fonts.gstatic.com' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600&display=swap' },
     ],
   },
 
   script: [
+    {
+      src: '/bootstrap.bundle.min.js',
+      type: 'text/javascript'
+    },
     {
       src: 'https://kit.fontawesome.com/9d1d9a82d2.js',
       type: 'text/javascript',
@@ -86,6 +87,7 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'vue-sweetalert2/nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
