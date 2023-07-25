@@ -3,7 +3,7 @@
 
         <div class="position-absolute" style="top: 5vh; right: 0;">
             <div class="row m-0">
-                <span>Don’t have an account ? <nuxt-link to="login/singup">Sing Up</nuxt-link></span>
+                <span>Don’t have an account ? <a @click="part()" style="color: blue; cursor: pointer;">Sing Up</a></span>
             </div>
         </div>
 
@@ -92,6 +92,9 @@ export default {
         }
     },
     methods: {
+        part() {
+            window.location = "login/singup"
+        }
     }
 }
 
