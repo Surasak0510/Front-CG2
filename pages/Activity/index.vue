@@ -5,6 +5,7 @@
                 <div class="col-12 d-flex align-items-center">
                     <img src="../../static/Logo.png" alt="" style="width: 20vh;">
                     <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2></strong>
+                    <checkpoint class="ps-5"/>
                 </div>
             </div>
             <div class="row rounded-5 p-5 my-5" style="background-color: #ECF0EE;">
@@ -71,8 +72,10 @@
 </template>
 
 <script>
+import checkpoint from '~/components/checkpoint.vue'
 
 export default {
+  components: { checkpoint },
     data() {
         return{
             store: "",
