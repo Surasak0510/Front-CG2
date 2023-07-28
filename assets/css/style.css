@@ -7,8 +7,8 @@
 }
 
 .circle {
-    width: 6vh;
-    height: 6vh;
+    /* width: 6vh;
+    height: 6vh; */
     border-radius: 50%;
     overflow: hidden;
 }
