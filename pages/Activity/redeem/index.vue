@@ -39,19 +39,19 @@
                         <b-button v-b-modal.modal-center style="background-color: #E1E4E2;  border: 2px solid #F5FFFA;"
                             class=" rounded-4 p-4">
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="row">
-                                        <img class="mx-auto" :src="item.img" alt="" style="width: 50%;">
+                                        <img class="mx-auto p-0" :src="item.img" alt="" style="width: 70%; border-radius: 15px;">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-8">
                                     <div class="row">
                                         <strong>
-                                            <h1 class="">{{ item.title }}</h1>
+                                            <h1 class="text-dark text-start">{{ item.title }}</h1>
                                         </strong>
                                     </div>
                                     <div class="row">
-                                        <p>{{ item.desc }}</p>
+                                        <p class="text-dark text-start">{{ item.desc }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +75,8 @@
                     <div class="row mx-auto p-2 rounded-4 my-3" style="background-color: #CCF5EA;">
                         <h3 class="m-0 text-center" style="color: #01AD82;">ใช้ได้ภายในวัน {{ date }}</h3>
                     </div>
-                    <div class="row">
-                        <p>{{ des }}</p>
+                    <div class="row my-3">
+                        <p>{{ desc }}</p>
                     </div>
                     <div class="row">
                         <button class="btn" type="submit" style="background-color: #579AFE; color: white;"
@@ -121,39 +121,55 @@ export default {
             point: "0",
             img: "",
             title: "",
-            des: "",
+            desc: "",
             id: "",
             date: "",
             dispoint: "",
             promotion: [
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
-                    title: "Title01",
-                    desc: "Test01",
+                    img: "https://media.discordapp.net/attachments/1118454652661399602/1134851658522833066/image_66.png",
+                    title: "เเคมเปญไม่รับแก้วพลาสติก",
+                    desc: "รายละเอียด กิจกรรมเริ่มตั้งแต่ ....... ถึง ........ เมื่อลูกค้านำแก้วมาใส่เครื่องดื่มที่ร้าน จะได้รับคะแนนสะสม",
                     dispoint: "100",
                     date: "10-10-66",
                     id: "1001"
                 },
                 {
                     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
-                    title: "Title02",
-                    desc: "Test02",
+                    title: "โปรเดือนเกิด",
+                    desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
                     dispoint: "200",
                     date: "10-10-66",
                     id: "1002"
                 },
                 {
                     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
-                    title: "Title03",
-                    desc: "Test03",
+                    title: "ถ่ายรูป",
+                    desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
                     dispoint: "300",
                     date: "10-10-66",
                     id: "1003"
                 },
                 {
                     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
-                    title: "Title04",
-                    desc: "Test04",
+                    title: "โปรเฉพาะช่วงเวลา",
+                    desc: "โปรเฉพาะช่วงเวลา ex. ทุกวันที่17ของทุกเดือน สิทธิ์ 15 ท่านแรกลด 10% ทุกเมนู ไม่รวมของที่แอดออนเพิ่ม(สมมุติ จะเอาเป็นวันเกิดเจ้าของร้านกะได้ หรือวันที่เปิดร้านกะได้)",
+                    dispoint: "400",
+                    date: "10-10-66",
+                    id: "1004"
+                },
+                {
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    title: "โปรเมนูออกใหม่",
+                    desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
+                    dispoint: "400",
+                    date: "10-10-66",
+                    id: "1004"
+                },
+                {
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
+                    desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
                     dispoint: "400",
                     date: "10-10-66",
                     id: "1004"

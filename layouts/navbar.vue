@@ -10,7 +10,7 @@
                         <p v-if="this.page == 'index'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">Home</p>
                         <p v-else class="text-center" style="color: #00CC99;">Home</p>                       
                     </a>
-                    <a href="">
+                    <a href="/activity/store">
                         <img style="object-fit: cover; width: 100%; height: 100%;" src="../static/navbar/flag.png" alt="flag">
                         <p v-if="this.page == 'Activity'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">Activity</p>
                         <p v-else class="text-center" style="color: #00CC99;">Activity</p>
@@ -25,7 +25,7 @@
                         <p v-if="this.page == 'wallet'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">wallet</p>
                         <p v-else class="text-center" style="color: #00CC99;">wallet</p>
                     </a>
-                    <a href="">
+                    <a href="/store">
                         <img style="object-fit: cover; width: 100%; height: 100%;" src="../static/navbar/store.png" alt="store">
                         <p v-if="this.page == 'store'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">store</p>
                         <p v-else class="text-center" style="color: #00CC99;">store</p>

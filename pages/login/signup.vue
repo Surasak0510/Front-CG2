@@ -88,7 +88,8 @@
                             <div class="mb-3">
                                 <div class="form-text">Upload transaction symbols</div>
                                 <div class="input-group">
-                                    <input type="file" class="form-control rounded-4" >
+                                    <input class="form-control rounded-4" type="file" ref="fileInput" @input="pickFile"  >
+                                    <!-- <img :src="`${previewImage}`" alt="" style="width: 100px; height: 100px;"> -->
                                 </div>
                             </div>
                         </div>
@@ -140,9 +141,9 @@
                         </div>
                     </div>
 
-                    <code>
+                    <!-- <code>
                         {{ data }}
-                    </code>
+                    </code> -->
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
                             <button type="button" class="btn btn-primary my-3 rounded-5 p-2 px-4" @click="submit()">Sing Up</button>
@@ -158,8 +159,10 @@
 export default {
     data() {
         return{
+            // previewImage: null,
             Privacy: false,
             data: {
+                previewImage: null,
                 name: "",
                 type: "",
                 province: "",
@@ -189,7 +192,20 @@ export default {
                     window.location = "/"
                 })
             }
-        }
+        },
+        pickFile () {
+            let input = this.$refs.fileInput
+            let file = input.files
+            if (file && file[0]) {
+              let reader = new FileReader
+              reader.onload = e => {
+              this.data.previewImage = e.target.result
+              console.log(this.data.previewImage)
+            }
+            reader.readAsDataURL(file[0])
+            this.$emit('input', file[0])
+            }
+        },
     }
 }
 
