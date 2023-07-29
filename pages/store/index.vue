@@ -65,15 +65,36 @@
                     </div>
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-end">
                         <!-- <button type="button" class="btn rounded-5 fw-light" style="background-color: #579AFE; ">ระบุรหัสส่วนลด</button> -->
-                        <b-button v-b-modal.modal-center style="background-color: #579AFE; color: white; border: 1px solid #579AFE; height: 35px;" class="btn rounded-5">ระบุรหัสส่วนลด</b-button>
+                        <b-button v-b-modal.modal-center @click="code = null" style="background-color: #579AFE; color: white; border: 1px solid #579AFE; height: 35px;" class="btn rounded-5">ระบุรหัสส่วนลด</b-button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="row m-0">
+            <b-tabs class="" content-class="">
+                <b-tab title="My Promotion" active><MyPromotion/></b-tab>
+                <b-tab title="ประวัติสะสม"><p>ประวัติสะสม</p></b-tab>
+            </b-tabs>
+        </div>
+
                     <!-- Modal -->
             <b-modal id="modal-center" centered title="Reward" hide-footer>
-                <h1>Modal</h1>
+                <div class="row">
+                    <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 200px;">
+                </div>
+                <div class="row">
+                    <h5 class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h5>
+                </div>
+                <div class="row mt-4">
+                    <div class="input-group mb-3 w-50 mx-auto">
+                        <input type="text" class="form-control rounded-5" placeholder="" v-model="code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <!-- <span class="input-group-text" id="basic-addon2">@example.com</span> -->
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('modal-center')" style="background-color: #0C68F2; width: 25%; ">confirm</button>
+                </div>
             </b-modal>
     </div>
 </template>
@@ -83,6 +104,7 @@ export default{
     layout: 'store',
     data() {
         return{
+            code: null,
             Store: {
                 name: "Cafe Amazon",
                 img : "https://img.ws.mms.shopee.co.th/62c71069559c4b983b9e2c6d89df14b7",
@@ -92,44 +114,27 @@ export default{
                 CR: 65000
             }
         }
+    },
+    methods: {
+        checkcode() {
+            if (this.code == "9A5D5f") {
+                this.$swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'complete the code',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            }
+            else {
+                this.$swal({
+                    icon: 'error',
+                    title: 'No such code found',
+                    text: 'Something went wrong!',
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                    })
+            }
+        }
     }
 }
 </script>
-
-<style scoped>
-
-/* // Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
-    /* Fsize-1 {
-        font-size: ;
-    } */
- }
-
-/* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-    /* Fsize-1 {
-        font-size: ;
-    } */
- }
-
-/* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
-    /* Fsize-1 {
-        font-size: ;
-    } */
- }
-
-/* // X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-    /* Fsize-1 {
-        font-size: ;
-    } */
- }
-
-/* // XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) { 
-    /* Fsize-1 {
-        font-size: ;
-    } */
- }
-</style>

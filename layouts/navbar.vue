@@ -10,7 +10,7 @@
                         <p v-if="this.page == 'index'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">Home</p>
                         <p v-else class="text-center" style="color: #00CC99;">Home</p>                       
                     </a>
-                    <a href="/activity">
+                    <a href="/activity/store">
                         <img style="object-fit: cover; width: 100%; height: 100%;" src="../static/navbar/flag.png" alt="flag">
                         <p v-if="this.page == 'Activity'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">Activity</p>
                         <p v-else class="text-center" style="color: #00CC99;">Activity</p>
