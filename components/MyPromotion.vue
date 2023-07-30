@@ -24,7 +24,7 @@
                         <div class="row mt-auto">
                             <div class="col-12">
                                 <b-button v-b-modal.AddType @click="Active(item)">แก้ไข</b-button>
-                                <button type="button" class="btn btn-link" @click="Delete(item.id)">ลบ</button>
+                                <b-button v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="AddType" centered hide-footer :title="HeadPro">
-            <div class="row">
+        <b-modal id="AddType" centered hide-footer :title="HeadPro" >
+            <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
                         <label for="basic-url" class="form-label">ระบุชื่อเเคมเปญ</label>
@@ -80,6 +80,22 @@
                 </div>
             </div>
         </b-modal>
+
+        <b-modal id="Delete" size="lg" centered hide-footer hide-header title="BootstrapVue">
+            <div class="row">
+                <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
+            </div>
+            <div class="row">
+                <h3 class="text-center">คุณต้องการลบโปรโมชั่นการสะสมนี้ใช่หรือไม่!!</h3>
+            </div>
+            <div class="row my-5">
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn text-white" style="background-color: #BFE1D9;" @click="$bvModal.hide('Delete')">ยกเลิก</button>
+                    <button class="btn color-main text-white" @click="Delete(StoreId) & $bvModal.hide('Delete')">ยืนยัน</button>
+                </div>
+            </div>
+        </b-modal>
+
     </div>
 </template>
 
@@ -89,6 +105,7 @@ export default {
     data() {
         return {
             previewImage: null,
+            StoreId: "",
             img: null,
             title: "",
             desc: "",
@@ -154,6 +171,7 @@ export default {
             this.img = data.img
             this.title = data.title
             this.desc = data.desc
+            this.StoreId = data.id
         },
         pickFile () {
             let input = this.$refs.fileInput
@@ -179,9 +197,9 @@ export default {
             }
             // console.table(data)
         },
-        Delete(data) {
-            // console.log(data)
-            alert("ลบล้าาาา = " + data)
+        Delete() {
+            // console.log(this.StoreId)
+            alert("ลบProMotion : ",this.StoreId)
         },
         Add() {
             this.HeadPro = "Add Promotion"
