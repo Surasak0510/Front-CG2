@@ -48,7 +48,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-center">
-                        <button type="button" class="btn rounded-5 fw-bold " style="background-color: #FFFB8F;">Carbon Market <img style="height: 60px;" src="~/static/icon/shop.png" alt=""></button>
+                        <nuxt-link :to="`/CCStore?store=${Store.ID}`" heaf  class="btn rounded-5 fw-bold " style="background-color: #FFFB8F;">Carbon Market <img style="height: 60px;" src="~/static/icon/shop.png" alt=""></nuxt-link>
                     </div>
                     <div class="col-12 col-md-4 my-3">
                         <div class="row">
@@ -74,7 +74,7 @@
         <div class="row m-0">
             <b-tabs class="" content-class="">
                 <b-tab title="My Promotion" active><MyPromotion/></b-tab>
-                <b-tab title="ประวัติสะสม"><p>ประวัติสะสม</p></b-tab>
+                <b-tab title="ประวัติสะสม"><hispoint/></b-tab>
             </b-tabs>
         </div>
 
