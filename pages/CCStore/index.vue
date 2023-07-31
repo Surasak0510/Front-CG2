@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="row mx-0">
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control w-50 rounded-5 p-4" :value="CC = Bath / price" min="0" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="number" class="form-control w-50 rounded-5 p-4" readonly :value="CC = Bath / price" min="0" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                             </div>
@@ -110,12 +110,14 @@ export default{
             trade: "up",
             Bath: 0,
             CC: 0,
-            StoreID: ""
+            StoreID: "",
+            idBuy: "110123"
         }
     },
     methods: {
         BuyCC() {
             console.log(this.StoreID , this.Bath , this.CC)
+            window.location = '/CCStore/BuyCC?store=' + this.StoreID + '&idBuy=' +  this.idBuy
         }
     },
     mounted() {
