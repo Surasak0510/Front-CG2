@@ -135,7 +135,7 @@ export default {
                     id: "1001"
                 },
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012363845782/1.png",
                     title: "โปรเดือนเกิด",
                     desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
                     dispoint: "200",
@@ -143,7 +143,7 @@ export default {
                     id: "1002"
                 },
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012753924136/2.png",
                     title: "ถ่ายรูป",
                     desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
                     dispoint: "300",
@@ -151,7 +151,7 @@ export default {
                     id: "1003"
                 },
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013118820432/3.png",
                     title: "โปรเฉพาะช่วงเวลา",
                     desc: "โปรเฉพาะช่วงเวลา ex. ทุกวันที่17ของทุกเดือน สิทธิ์ 15 ท่านแรกลด 10% ทุกเมนู ไม่รวมของที่แอดออนเพิ่ม(สมมุติ จะเอาเป็นวันเกิดเจ้าของร้านกะได้ หรือวันที่เปิดร้านกะได้)",
                     dispoint: "400",
@@ -159,7 +159,7 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013823463444/5.png",
                     title: "โปรเมนูออกใหม่",
                     desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
                     dispoint: "400",
@@ -167,7 +167,7 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiiZXMPV7K63lyZ63XdVx3Md4QzphY_3G2cw&usqp=CAU",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013462761562/4.png",
                     title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
                     desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
                     dispoint: "400",
