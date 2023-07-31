@@ -25,7 +25,7 @@
                         <p v-if="this.page == 'wallet'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">wallet</p>
                         <p v-else class="text-center" style="color: #00CC99;">wallet</p>
                     </a>
-                    <a href="/store">
+                    <a :href="`/store?store${ storeID }`">
                         <img style="object-fit: cover; width: 100%; height: 100%;" src="../static/navbar/store.png" alt="store">
                         <p v-if="this.page == 'store'" class="text-center rounded-pill" style="background-color: #CCF5EA; color: #00CC99;">store</p>
                         <p v-else class="text-center" style="color: #00CC99;">store</p>
@@ -78,6 +78,7 @@ export default{
     
     data() {
         return{
+            storeID: "100516",
             page: "",
             pic: 'https://i.stack.imgur.com/5tvCu.jpg?s=64&g=1',
             UName: "CarbonGo_01 "
@@ -87,7 +88,7 @@ export default{
     methods: {
     },
     mounted() {
-        console.log("Thisssss page",$nuxt.$route.name)
+        // console.log("Thisssss page",$nuxt.$route.name)
         this.page = $nuxt.$route.name
     }
 }
