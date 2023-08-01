@@ -73,7 +73,7 @@
                         <img class="mx-auto" :src="`https://barcode.tec-it.com/barcode.ashx?data=${ Pay.id }&code=QRCode&eclevel=L`" alt="" style="width: 20%;">
                     </div>
                     <div class="col-6 d-flex">
-                        <nuxt-link :to="`/store?store=${ StoreID }`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
+                        <nuxt-link :to="`/?store=${ StoreID }`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
                     </div>
                 </div>
 

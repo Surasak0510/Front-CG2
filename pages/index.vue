@@ -1,245 +1,140 @@
 <template>
   <div>
-    <div class="row mt-5 m-0 bg-info" style="height: 400px;">
-      <hooper :progress="true" :autoPlay="true" :playSpeed="2000">
-        <slide>
-          slide 1
-        </slide>
-        <slide>
-          slide 2
-        </slide>
-        <slide>
-          slide 3
-        </slide>
-        <slide>
-          slide 4
-        </slide>
-        <slide>
-          slide 5
-        </slide>
-        <slide>
-          slide 6
-        </slide>
-      </hooper>
-    </div>
-
-
-    <div class="row m-0 " style="background-color: #00CC99;">
-      <div class="container">
-        <div class="col-12">
-          <div class="row py-5 gap-3">
-            <h1 class="text-white text-center big-text">Let's start collecting points</h1>
-            <h3 class="text-center text-white fw-light">greenhouse gases It's part of saving the world.</h3>
-          </div>
-          <div class="row d-flex justify-content-center align-items-center my-4" style="height: 15vh;">
-            <button type="button h-100" class="btn btn-light fw-semibold"
-              style="width: 25%; height: 50%; color: #01AD82; border: 2px solid white">Click to log carbon Reduvtion
-              activity</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row m-0">
-      <div class="col-12 col-xl-4">
-
-        <div class="row p-5">
-          <div class="col">
-            <div class="row">
-              <h1 class="" style="color: #01AD82;">This is my bag.</h1>
-            </div>
-            <div class="row rounded-pill" style="background-color: #CCF5EA; height: 8px; width: 70%;">
-            </div>
-          </div>
-        </div>
-
-        <div class="row rounded-4 mx-auto my-3" style="background-color: #CCF5EA; width: 80%;">
-          <div class="col-6 position-relative d-flex justify-content-center">
-            <img class="" style="max-width: 10vw;;" src="../static/Logo.png" alt="">
-            <p class="position-absolute fs-4" style="color: #01AD82; top: 10%; right: 0;">Wallet</p>
-          </div>
-          <div class="col-6 d-flex align-items-center ">
-            <div class="row m-0 w-100">
-              <div class="col-12">
-                <div class="row m-0">
-                  <h1 class="text-center fw-bold">฿ {{ Balance }}</h1>
-                </div>
-                <div class="row m-0">
-                  <p class="text-center fs-2 fw-light">Balance</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row rounded-4 mx-auto my-3" style="background-color: #CCF5EA; width: 80%;">
-          <div class="col-6 position-relative d-flex justify-content-center">
-            <img class="my-4" style="max-width: 5vw;" src="../static/icon/point.png" alt="">
-            <p class="position-absolute fs-4" style="color: #01AD82; top: 10%; right: 0;">Coin</p>
-          </div>
-          <div class="col-6 d-flex align-items-center ">
-            <div class="row m-0 w-100">
-              <div class="col-12">
-                <div class="row m-0">
-                  <h1 class="text-center fw-bold">{{ Accumulate }}</h1>
-                </div>
-                <div class="row m-0">
-                  <p class="text-center fs-5 fw-light">Accumulate</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row rounded-4 mx-auto my-3" style="background-color: #CCF5EA; width: 80%;">
-          <div class="col-6 position-relative d-flex justify-content-center">
-            <img class="my-4" style="max-width: 5vw;" src="../static/icon/Accumulate.png" alt="">
-            <p class="position-absolute fs-4" style="color: #01AD82; top: 10%; right: 0;">Reward</p>
-          </div>
-          <div class="col-6 d-flex align-items-center ">
-            <div class="row m-0 w-100">
-              <div class="col-12">
-                <div class="row m-0">
-                  <h1 class="text-center fw-bold">{{ Point }}</h1>
-                </div>
-                <div class="row m-0">
-                  <p class="text-center fs-5 fw-light">Point</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-12 col-xl-8">
-
-        <div class="row rounded-4 m-1" style="background-color: #CCF5EA;">
-          <div class="col-12">
-
-            <div class="row">
-              <div class="col-8">
-                <div class="row py-4 px-5">
-                  <strong><h1 class="">Register daily to receive coins</h1></strong>
-                  <p class="fs-5 Size-text">You have already checked in 0/7 days ago.</p>
-                </div>
-              </div>
-              <div class="col-4 d-flex align-items-center">
-                <button type="button" class="btn w-50 rounded-5 text-white p-2 fs-5" style="background-color: #579AFE;">Check in</button>
-              </div>
-            </div>
-
-            <div class="row rounded-4 mx-1 my-2" style="background-color: white;">
-              <div class="col-12 col-xl-6">
-
-                <div class="row d-flex justify-content-center my-5 position-relative" style="min-height: 50px;">
-                  <img v-if="Rank[0].pic == ''" class="" style="object-fit: cover; border-radius: 50%; overflow: hidden; width: 10vw; border: 1px solid black;" src="../static/Logo.png" alt="">
-                  <img v-else class="h-100" style="object-fit: cover; border-radius: 50%; overflow: hidden; width: 10vw;" v-bind:src="Rank[0].pic" alt="">
-                  <img class="position-absolute d-none d-xl-block" style="height: 8vh; width: 6vw; bottom: -14%; right: 33%;" src="../static/rank/rank1.png" alt="">
-                  <img class="position-absolute d-lg-block d-xl-none" style="height: 7vh; width: 7vw; bottom: -14%; right: 42%;" src="../static/rank/rank1.png" alt="">
-                </div>
-                <div class="row my-4">
-                  <strong><h1 class="text-center">{{ Rank[0].Name }}</h1></strong>
-                  <h3 class="text-center" style="color: #01AD82;">{{ Rank[0].Point }} P</h3>
-                </div>
-              </div>
-
-              <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center">
-                <div class="row rounded-4 w-100 my-4" style="background-color: #F5F5F5; border: 1px solid #00CC99;">
-                  <div class="col-12">
-
-                    <div class="row py-3">
-                      <div class="col-4 d-flex justify-content-center align-items-center">
-                        <img style="height: 10vh;" src="../static/rank/rank2.png" alt="">
+      <div class="row m-0 p-3 py-4" style="background-color: #CCF5EA;">
+          <div class="container bg-white rounded-4 p-4">
+              <div class="row">
+                  <div class="col-12 col-md-4">
+                      <div class="row">
+                          <img class="mx-auto" :src="`${Store.img}`" alt="" style="width: 50%;">
                       </div>
-                      <div class="col-8">
-                        <h3 style="color: #01AD82;">{{ Rank[1].Point }} P</h3>
-                        <h3>{{ Rank[1].Name }}</h3>
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="row">
+                                  <p class="text-center">ระดับคุณภาพร้าน</p>
+                              </div>
+                              <div class="row rounded-5" >
+                                  <b-form-rating  v-model="Store.rating" variant="warning" class="rounded-5 w-75 mx-auto" style="background-color: #E1E4E2;" readonly></b-form-rating>
+                              </div>
+                              <div class="row">
+                                  <p v-if="Store.rating <= 1" class="text-center" style="color: red;">ควรปรับปรุง</p>
+                                  <p v-else-if="Store.rating <= 2" class="text-center" style="color: pink;">คุณภาพค่อนข้างน้อย</p>
+                                  <p v-else-if="Store.rating <= 3" class="text-center" style="color: yellow;">พอใช้</p>
+                                  <p v-else-if="Store.rating <= 4" class="text-center" style="color: green;">คุณภาพดี</p>
+                                  <p v-else-if="Store.rating <= 5" class="text-center" style="color: #0C68F2;">คุณภาพดีเยี่ยม</p>
+                              </div>
+                              <!-- <input type="range" class="form-range" min="0" max="5" step="0.5" v-model="Store.rating" > -->
+                          </div>
                       </div>
-                    </div>
-
-                    <div class="row py-3">
-                      <div class="col-4 d-flex justify-content-center align-items-center">
-                        <img style="height: 10vh;" src="../static/rank/rank3.png" alt="">
-                      </div>
-                      <div class="col-8">
-                        <h3 style="color: #01AD82;">{{ Rank[2].Point }} P</h3>
-                        <h3>{{ Rank[2].Name }}</h3>
-                      </div>
-                    </div>
-
-                    <div class="row py-3">
-                      <div class="col-4 d-flex justify-content-center align-items-center">
-                        <img style="height: 10vh;" src="../static/rank/rank4.png" alt="">
-                      </div>
-                      <div class="col-8">
-                        <h3 style="color: #01AD82;">{{ Rank[3].Point }} P</h3>
-                        <h3>{{ Rank[3].Name }}</h3>
-                      </div>
-                    </div>
-
                   </div>
-                </div>
+                  <div class="col-12 col-md-8" style="border-bottom: 1.5px solid #585858;">
+                      <div class="row mb-3 mt-3">
+                          <div class="col-12 col-xl-4">
+                              <h1 class="m-0">{{ Store.name }}</h1>
+                              <p>ID : {{ Store.ID }}</p>
+                          </div>
+                          <div class="col-12 col-xl-8">
+                              <div class="row rounded-4 p-3 m-0" style="background-color: #BFE1D9;">
+                                  <p class="p-0 m-0">{{ Store.loc }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row py-3 mt-5">
+                          <h2>ยอดคะแนนสะสมการชดเชยคาร์บอนจากลูกค้าทั้งหมด</h2>
+                      </div>
+                      <div class="row m-0 ">
+                          <b-progress :value="Store.CR" max="100000" show-value variant="success" style="height: 50px;" class="py-2 rounded-5 mb-4"></b-progress>
+                      </div>
+                  </div>
               </div>
-            </div>
-
+              <div class="row mt-3">
+                  <div class="col-12 col-md-4 my-3 d-flex justify-content-center">
+                      <nuxt-link :to="`/CCStore?store=${Store.ID}`" heaf  class="btn rounded-5 fw-bold " style="background-color: #FFFB8F;">Carbon Market <img style="height: 60px;" src="~/static/icon/shop.png" alt=""></nuxt-link>
+                  </div>
+                  <div class="col-12 col-md-4 my-3">
+                      <div class="row">
+                          <div class="col-4 d-flex justify-content-center">
+                              <img class="" src="~/static/icon/rating.png" alt="" style="height:60px; ">
+                          </div>
+                          <div class="col-8">
+                              <div class="row d-flex">
+                                  <h4 style="color: #01AD82;">ระดับการสะสม - พรีเมียม</h4>
+                                  <button type="button" class="btn rounded-5 fw-light " style="background-color: #E1E4E2; color: #A19999;">ดาวโหลดใบประกาศ</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-4 my-3 d-flex justify-content-end">
+                      <!-- <button type="button" class="btn rounded-5 fw-light" style="background-color: #579AFE; ">ระบุรหัสส่วนลด</button> -->
+                      <b-button v-b-modal.modal-center @click="code = null" style="background-color: #579AFE; color: white; border: 1px solid #579AFE; height: 35px;" class="btn rounded-5">ระบุรหัสส่วนลด</b-button>
+                  </div>
+              </div>
           </div>
-        </div>
-
-        <div class="row rounded-4 m-1 py-4 mb-5" style="background-color: #CCF5EA;">
-          <div class="col-4 d-flex justify-content-center">
-            <button type="button h-100" class="btn p-3   fw-semibold"
-              style="border: 2px solid white ; background-color: #FAF7B8;"><h3 class="m-0">Get point</h3></button>
-          </div>
-          <div class="col-8 d-flex justify-content-center align-items-center">
-            <strong><h3 class="text-center m-0">BECOME A MEMBER & GET POINT 50 POINT</h3></strong>
-          </div>
-        </div>
-
       </div>
-    </div>
+
+      <div class="row m-0">
+          <b-tabs class="" content-class="">
+              <b-tab title="My Promotion" active><MyPromotion/></b-tab>
+              <b-tab title="ประวัติสะสม"><hispoint/></b-tab>
+          </b-tabs>
+      </div>
+
+                  <!-- Modal -->
+          <b-modal id="modal-center" centered title="Reward" hide-footer>
+              <div class="row">
+                  <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 200px;">
+              </div>
+              <div class="row">
+                  <h5 class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h5>
+              </div>
+              <div class="row mt-4">
+                  <div class="input-group mb-3 w-50 mx-auto">
+                      <input type="text" class="form-control rounded-5" placeholder="" v-model="code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                      <!-- <span class="input-group-text" id="basic-addon2">@example.com</span> -->
+                  </div>
+              </div>
+              <div class="row mt-3">
+                  <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('modal-center')" style="background-color: #0C68F2; width: 25%; ">confirm</button>
+              </div>
+          </b-modal>
   </div>
 </template>
 
 <script>
-import { Hooper, Slide } from 'hooper';
-import 'hooper/dist/hooper.css';
-
-export default {
-  layout: 'navbar',
-  components: {
-    Hooper,
-    Slide
-  },
+export default{
+  layout: 'store',
   data() {
-    return {
-      Rank: [
-        {
-          Name: "Surasak Khemthong",
-          pic: "https://www.wilsoncenter.org/sites/default/files/styles/large/public/media/images/person/james-person-1.jpg",
-          Point: 30000
-        },
-        {
-          Name: "PW Rattanakorn",
-          pic: "",
-          Point: 20000
-        },
-        {
-          Name: "Arthittapoom Wanhom",
-          pic: "",
-          Point: 10000
-        },
-        {
-          Name: "Siwapon Jaishue",
-          pic: "",
-          Point: 9000
-        },
-
-        
-        
-      ],
-      Balance: "0.00",
-      Accumulate: 0,
-      Point: 0,
-    }
+      return{
+          code: null,
+          Store: {
+              name: "Cafe Amazon",
+              img : "https://img.ws.mms.shopee.co.th/62c71069559c4b983b9e2c6d89df14b7",
+              loc : "89,89/1-89/3 Highway No. 3, Sai Mai Subdistrict, Sai Mai District, Bangkok, Bangkok 10220",
+              ID : "100516",
+              rating: 4.5,
+              CR: 65000
+          }
+      }
   },
+  methods: {
+      checkcode() {
+          if (this.code == "9A5D5f") {
+              this.$swal({
+              position: 'top-end',
+              icon: 'success',
+              title: 'complete the code',
+              showConfirmButton: false,
+              timer: 1500
+              })
+          }
+          else {
+              this.$swal({
+                  icon: 'error',
+                  title: 'No such code found',
+                  text: 'Something went wrong!',
+                  // footer: '<a href="">Why do I have this issue?</a>'
+                  })
+          }
+      }
+  }
 }
 </script>
