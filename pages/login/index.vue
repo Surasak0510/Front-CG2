@@ -30,7 +30,7 @@
                                             style="border: 1px solid  ##A6A6A6;  border-radius: 25px;"> -->
                                     </div>
     
-                                    <button type="submit" class="btn btn btn-block color-main py-2"
+                                    <button type="submit" @click="login" class="btn btn btn-block color-main py-2"
                                         style="color: white; border-radius: 25px;">Login</button>
     
                                     <div class="row mt-4 px-3">
@@ -63,7 +63,7 @@
     
                         <div class="row py-3 d-flex justify-content-center gap-3">
                             <a href="#" style="width: 12%; height: 12%;">
-                                <img src="../../assets/img/Google.png" alt="Google" >
+                                <img @click="login_google" src="../../assets/img/Google.png" alt="Google" >
                                 <p class="text-dark link-underline-dark">Google</p>
                             </a>
                             <a href="#" style="width: 12%; height: 12%;">
@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 export default {
     leyout: 'default',
     data() {
@@ -91,6 +92,61 @@ export default {
             Password: ""
         }
     },
+    methods: {
+        login(event) {
+            event.preventDefault();
+            // Call the Firebase Authentication API to sign in the user
+            console.log(this.Email, this.Password)
+            firebase.auth().signInWithEmailAndPassword(this.Email, this.Password)
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage);
+                console.log(errorCode);
+            });
+        },
+        login_google() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+            firebase.auth().languageCode = 'th';
+            provider.setCustomParameters({
+            'login_hint': 'user@example.com'
+            });
+            firebase.auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                // /** @type {firebase.auth.OAuthCredential} */
+                var credential = result.credential;
+
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = credential.accessToken;
+                console.log(token);
+                // The signed-in user info.
+                var user = result.user;
+                console.log(user);
+                // IdP data available in result.additionalUserInfo.profile.
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                console.log(errorCode);
+                var errorMessage = error.message;
+                console.log(errorMessage);
+                // The email of the user's account used.
+                var email = error.email;
+                console.log(email);
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                console.log(credential);
+                // ...
+            });
+        }
+    }
 }
 
 </script>
