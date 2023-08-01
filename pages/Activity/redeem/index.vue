@@ -1,19 +1,11 @@
 <template>
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-12 d-flex align-items-center">
-                    <img src="~/static/Logo.png" alt="" style="width: 20vh;">
-                    <strong>
-                        <h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2>
-                    </strong>
+            <div class="row my-5">
+                <div class="col-12 col-md-6 d-flex align-items-center">
+                    <img src="~/static/Logo2.png" alt="" class="" style="width: 40vh;">
                 </div>
-            </div>
-            <div class="row my-4">
-                <div class="col"></div>
-
-
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-6">
                     <div class="row rounded-5" style="background-color: #CCF5EA;">
                         <div class="col-4 p-0">
                             <img src="~/static/Logo.png" alt="" style="width: 15vh;">
@@ -28,7 +20,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
 
@@ -64,7 +55,7 @@
             <b-modal id="modal-center" centered title="Reward" hide-footer>
                 <div class="col-12">
                     <div class="row">
-                        <img :src="img" alt="" style="width: 50%;" class="mx-auto m-5">
+                        <img :src="img" alt="" class="mx-auto m-5">
                     </div>
                     <div class="row">
                         <strong>
@@ -127,7 +118,7 @@ export default {
             dispoint: "",
             promotion: [
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012363845782/1.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
                     title: "โปรเดือนเกิด",
                     desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
                     dispoint: "200",
@@ -138,7 +129,7 @@ export default {
                     id: "1002"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012753924136/2.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524455833620/2.png",
                     title: "ถ่ายรูป",
                     desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
                     dispoint: "300",
@@ -149,7 +140,7 @@ export default {
                     id: "1003"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013118820432/3.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380570685491/3.png",
                     title: "โปรเฉพาะช่วงเวลา",
                     desc: "สิทธิพิเศษเนื่องจากวันพิเศษ! 15 ท่านแรกรับส่วนลด 15% ทุกเมนู **เงื่อนไข ไม่รวมเมนูที่ add เพิ่ม",
                     dispoint: "400",
@@ -160,7 +151,7 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013823463444/5.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939525496033280/5.png",
                     title: "โปรเมนูออกใหม่",
                     desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
                     dispoint: "400",
@@ -171,7 +162,7 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013462761562/4.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
                     title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
                     desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
                     dispoint: "400",
