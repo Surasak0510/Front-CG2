@@ -156,6 +156,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 export default {
     data() {
         return{
@@ -177,21 +178,49 @@ export default {
         }
     },
     methods: {
-        submit(){
+        submit(event){
+            // event.preventDefault();
             console.log(this.data)
-            
-
-            if(this.data) {
-                this.$swal({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-                }).then((result) => {
-                    window.location = "/"
+        
+            console.log(this.data.email, this.data.password)
+            firebase.auth().createUserWithEmailAndPassword(this.data.email, this.data.password)
+            .then((userCredential) => {
+                // Signed in 
+                var user = userCredential.user;
+                // ...
+                console.log(user)   
+    
+                // ทำการอัปเดต photoURL
+                user.updateProfile({
+                photoURL: 'https://example.com/photo.jpg' // URL ของรูปภาพที่คุณต้องการใส่
                 })
-            }
+                .then(() => {
+                // การอัปเดตสำเร็จ
+                })
+                .catch((error) => {
+                // เกิดข้อผิดพลาดในการอัปเดต
+                });
+                
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+                // ..
+            });
+
+
+            // if(this.data) {
+            //     this.$swal({
+            //     position: 'top-end',
+            //     icon: 'success',
+            //     title: 'Your work has been saved',
+            //     showConfirmButton: false,
+            //     timer: 1500
+            //     }).then((result) => {
+            //         window.location = "/"
+            //     })
+            // }
         },
         pickFile () {
             let input = this.$refs.fileInput
