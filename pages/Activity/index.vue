@@ -2,7 +2,7 @@
     <div class="" >
         <div class="container h-100">
             <div class="row">
-                <div class="col-12 d-flex align-items-center">
+                <div class="col-12 d-flex align-items-center justify-content-center">
                     <img src="../../static/Logo.png" alt="" style="width: 20vh;">
                     <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2></strong>
                     <checkpoint class="ps-5"/>
@@ -81,8 +81,8 @@ export default {
             store: "",
             tel: "",
             Store: {
-                name: "Cafe Amazon",
-                img : "https://img.ws.mms.shopee.co.th/62c71069559c4b983b9e2c6d89df14b7",
+                name: "Don't sheep Café",
+                img : "https://media.discordapp.net/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
                 loc : "89,89/1-89/3 Highway No. 3, Sai Mai Subdistrict, Sai Mai District, Bangkok, Bangkok 10220",
                 ID : "100516"
             }

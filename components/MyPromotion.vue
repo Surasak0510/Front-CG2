@@ -168,6 +168,7 @@
             </div>
             <div class="row my-5">
                 <div class="col-12 d-flex justify-content-center">
+                    {{ StoreId }}
                     <button class="btn text-white" style="background-color: #BFE1D9;" @click="$bvModal.hide('Delete')">ยกเลิก</button>
                     <button class="btn color-main text-white" @click="Delete(StoreId) & $bvModal.hide('Delete')">ยืนยัน</button>
                 </div>
@@ -204,8 +205,8 @@ export default {
                 desc: ""
             },
             promotion: [
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012363845782/1.png",
+            {
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
                     title: "โปรเดือนเกิด",
                     desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
                     dispoint: "200",
@@ -216,7 +217,7 @@ export default {
                     id: "1002"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468012753924136/2.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524455833620/2.png",
                     title: "ถ่ายรูป",
                     desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
                     dispoint: "300",
@@ -227,7 +228,7 @@ export default {
                     id: "1003"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013118820432/3.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380570685491/3.png",
                     title: "โปรเฉพาะช่วงเวลา",
                     desc: "สิทธิพิเศษเนื่องจากวันพิเศษ! 15 ท่านแรกรับส่วนลด 15% ทุกเมนู **เงื่อนไข ไม่รวมเมนูที่ add เพิ่ม",
                     dispoint: "400",
@@ -238,7 +239,7 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013823463444/5.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939525496033280/5.png",
                     title: "โปรเมนูออกใหม่",
                     desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
                     dispoint: "400",
@@ -249,12 +250,13 @@ export default {
                     id: "1004"
                 },
                 {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135468013462761562/4.png",
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
                     title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
                     desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
                     dispoint: "400",
                     Count: "200",
                     PerUser: "1",
+                    type: "",
                     date: "2023-08-16",
                     id: "1004"
                 },
@@ -300,9 +302,9 @@ export default {
             }
             console.table(data)
         },
-        Delete() {
-            // console.log(this.StoreId)
-            alert("ลบProMotion : ",this.StoreId)
+        Delete(data) {
+            // console.log(data)
+            alert("ลบProMotion : " + data)
         },
         Add() {
             this.HeadPro = "Add Promotion"

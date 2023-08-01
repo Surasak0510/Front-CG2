@@ -21,7 +21,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row mx-0 d-none d-xs-block d-sm-block d-md-none my-3 py-2 rounded-5" style="background-color: #BFE1D9;" v-for="(item, index) in History" :key="index">
+        <div class="row mx-0 d-block d-md-none d-xl-none my-3 py-2 rounded-5" style="background-color: #BFE1D9;" v-for="(item, index) in History" :key="index">
             <div class="col-12">
                 <div class="row my-2 mx-0">
                     <div class="col-6 text-end">วันที่</div>
