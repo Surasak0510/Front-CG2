@@ -98,6 +98,9 @@
                 <b-tab title="My Promotion" active>
                     <MyPromotion />
                 </b-tab>
+                <b-tab title="Type" >
+                    <Type />
+                </b-tab>
                 <b-tab title="ประวัติสะสม">
                     <hispoint />
                 </b-tab>
