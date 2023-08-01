@@ -78,7 +78,7 @@ export default {
   components: { checkpoint },
     data() {
         return{
-            store: "",
+            storeID: "",
             tel: "",
             Store: {
                 name: "Don't sheep Café",
@@ -92,10 +92,10 @@ export default {
 
     },
     mounted() {
-        this.store = this.$route.query.store
-        console.log(this.store)
-        if(this.store === null || this.store === undefined) {
-            console.log("Testtt")
+        this.storeID = this.$route.query.store
+        console.log(this.storeID)
+        if(this.storeID === null || this.storeID === undefined) {
+            // console.log("Testtt")
             this.$swal({
                 icon: 'error',
                 title: 'No shop id',

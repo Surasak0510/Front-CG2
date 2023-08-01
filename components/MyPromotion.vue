@@ -6,7 +6,6 @@
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
-                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="AddType()" style="background-color: #28a745 ; width: 180px; border: 1px solid #28a745  ;">เพิ่มกิจกรรม Type</b-button>
                 <b-button v-b-modal.Addpromo class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มกิจกรรม promotion</b-button>
             </div>
         </div>
@@ -111,53 +110,7 @@
             </div>
         </b-modal>
 
-        <b-modal id="AddType" centered hide-footer title="Add Type" >
-            <div class="row p-4 " >
-                <div class="col-12">
-                    <div class="row">
-                        <label for="basic-url" class="form-label">ระบุชื่อเเคมเปญ</label>
-                        <div class="input-group flex-nowrap">
-                            <input type="text" class="form-control rounded-5" v-model="Type.title" >
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-4">
-                            <div class="row">
-                                <label for="basic-url" class="form-label">ประเภท</label>
-                                <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control rounded-5" v-model="Type.type">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
-                                <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
-                                    <span class="input-group-text">=</span>
-                                    <input type="text" class="form-control rounded-end-5" placeholder="คะแนน" v-model="Type.point">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
-                        <div class="input-group flex-nowrap">
-                            <input type="file" ref="fileInput" class="form-control rounded-5" @input="pickFile">
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <label for="basic-url" class="form-label">รายละเอียดเพิ่มเติม</label>
-                        <div class="input-group flex-nowrap">
-                            <textarea  class="form-control rounded-5 p-3" v-model="Type.desc"></textarea>
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" @click=" $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
-                    </div>
-                </div>
-            </div>
-        </b-modal>
+
 
         <b-modal id="Delete" size="lg" centered hide-footer hide-header title="BootstrapVue">
             <div class="row">
@@ -196,14 +149,7 @@ export default {
                 img: "",
                 desc: ""
             },
-            Type: {
-                title: "",
-                type: "",
-                count: "",
-                point: "",
-                img: "",
-                desc: ""
-            },
+
             promotion: [
             {
                     img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
@@ -247,18 +193,29 @@ export default {
                     PerUser: "1",
                     type: "",
                     date: "2023-08-16",
-                    id: "1004"
+                    id: "1005"
                 },
                 {
                     img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
                     title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
                     desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
-                    dispoint: "400",
+                    dispoint: "500",
                     Count: "200",
                     PerUser: "1",
                     type: "",
                     date: "2023-08-16",
-                    id: "1004"
+                    id: "1006"
+                },
+                {
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939526100009001/6.png",
+                    title: "โปรแลกซื้อ",
+                    desc: "ใช้ 140 แต้มแลกซื้อ Ice Coffee จากราคาปกติ 65 บาท เหลือเพียง 49 บาท",
+                    dispoint: "140",
+                    Count: "200",
+                    PerUser: "1",
+                    type: "",
+                    date: "2023-08-16",
+                    id: "1007"
                 },
             ],
         }
@@ -319,7 +276,15 @@ export default {
             this.StoreId = ""         
         },
         AddType() {
-
+            let data = {
+                title: this.Type.title,
+                type: this.Type.type,
+                count: this.Type.count,
+                point: this.Type.point,
+                img: this.previewImage,
+                desc: this.Type.desc
+            }
+            console.table(data)
         }
     },
 }

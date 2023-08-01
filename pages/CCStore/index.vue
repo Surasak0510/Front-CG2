@@ -117,6 +117,12 @@ export default{
     methods: {
         BuyCC() {
             console.log(this.StoreID , this.Bath , this.CC)
+            let data = {
+                id: this.StoreID,
+                bath: this.Bath,
+                cc: this.CC,
+                time: ""
+            }
             window.location = '/CCStore/BuyCC?store=' + this.StoreID + '&idBuy=' +  this.idBuy
         }
     },

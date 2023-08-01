@@ -50,6 +50,7 @@ export default {
   name: 'hispoint',
   data() {
     return{
+        storeID : "",
         History: [
             {
                 telUser: "0966383992",
@@ -74,6 +75,9 @@ export default {
             },
         ]
     }
+  },
+  mounted() {
+        this.storeID = this.$route.query.store
   }
 }
 </script>

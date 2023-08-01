@@ -31,7 +31,7 @@
                             <img v-else class="" :src="item.img" alt="" style="width: 25vh; ">
                         </div>
                         <h5 v-if="item.desc === ''" class="text-center my-3">Nodata...</h5>
-                        <h5 v-else class="text-center m-3">{{ item.desc }}</h5>
+                        <h5 v-else class="text-center m-3">{{ item.title }}</h5>
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" :value="item" v-model="check" style="top: 1vh; right: 2vh; width: 20%; height: 3vh;">
                     </div>
                 </div>
@@ -67,27 +67,39 @@ export default {
             check: [],
             type:[
                 {
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQjBtmD2IIHrxQC4NiVg458a9gK8JgIRXtsw&usqp=CAU",
-                    desc: "123",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
+                    title: "ไม่รับช้อน/ซ้อม",
                     Item_id: "1001",
                     point: 100
                 },
                 {
-                    img: "",
-                    desc: "",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
+                    title: "ไม่รับหลอด",
                     Item_id: "1002",
                     point: 100
                 },
                 {
-                    img: "",
-                    desc: "",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
+                    title: "ไม่รับถุง",
                     Item_id: "1003",
                     point: 100
                 },
                 {
-                    img: "",
-                    desc: "",
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
+                    title: "ไม่รับกล่อง",
                     Item_id: "1004",
+                    point: 100
+                },
+                {
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
+                    title: "ไม่รับฝา",
+                    Item_id: "1005",
+                    point: 100
+                },
+                {
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
+                    desc: "ไม่รับแก้ว",
+                    Item_id: "1006",
                     point: 100
                 },
             ]
@@ -121,7 +133,7 @@ export default {
     mounted() {
         this.store = this.$route.query.store
         this.tel = this.$route.query.tel
-        console.log(this.store,this.tel)
+        // console.log(this.store,this.tel)
     }
 }
 </script>
