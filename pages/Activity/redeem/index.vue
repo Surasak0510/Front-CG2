@@ -94,7 +94,7 @@
                     </b-tabs>
                 </div>
 
-                <button type="button" class="btn btn-success" @click="redirect()" style="background-color: #00CC99;">Compete</button>
+                <button type="button" class="btn btn-success" @click="Deletepoint()" style="background-color: #00CC99;">Compete</button>
 
             </b-modal>
 
@@ -108,6 +108,8 @@ export default {
     data() {
         return {
             show: false,
+            tel: "",
+            time: "",
             store: "",
             point: "0",
             img: "",
@@ -116,6 +118,8 @@ export default {
             id: "",
             date: "",
             dispoint: "",
+            detail: "",
+            storeID: "",
             promotion: [
                 {
                     img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
@@ -172,6 +176,17 @@ export default {
                     date: "2023-08-16",
                     id: "1004"
                 },
+                {
+                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939526100009001/6.png",
+                    title: "โปรแลกซื้อ",
+                    desc: "ใช้ 140 แต้มแลกซื้อ Ice Coffee จากราคาปกติ 65 บาท เหลือเพียง 49 บาท",
+                    dispoint: "140",
+                    Count: "200",
+                    PerUser: "1",
+                    type: "",
+                    date: "2023-08-16",
+                    id: "1007"
+                },
             ],
             code: "9A5D5f",
             //  {
@@ -190,17 +205,19 @@ export default {
             this.desc = data.desc
             this.dispoint = data.dispoint
             this.id = data.id
+            this.detail = data.detail
         },
         reward() {
             // console.table(this.dispoint, this.id)
             this.show = true
         },
-        redirect() {
+        Deletepoint() {
             window.location = `/activity?store=${this.store}`
-        }
+        },
     },
     mounted() {
-        this.store = this.$route.query.store
+        this.storeID = this.$route.query.store
+        this.tel = this.$route.query.tel
         // console.log("Testttttttttt",this.store)
     }
 }
