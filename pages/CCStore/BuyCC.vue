@@ -73,7 +73,7 @@
                         <img class="mx-auto" :src="`https://barcode.tec-it.com/barcode.ashx?data=${ Pay.id }&code=QRCode&eclevel=L`" alt="" style="width: 20%;">
                     </div>
                     <div class="col-6 d-flex">
-                        <nuxt-link :to="`/?store=${ StoreID }`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
+                        <nuxt-link :to="`/`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
                     </div>
                 </div>
 
@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
+const db = firebase.firestore();
 export default{
     data() {
         return{
@@ -97,6 +99,25 @@ export default{
     },
     mounted() {
         this.StoreID = this.$route.query.store
+        this.Pay.id = this.$route.query.idBuy
+
+        var docRef = db.collection('CCStore').doc(this.Pay.id);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                this.Pay.Bath = doc.data().bath
+                this.Pay.total = "0000"//แก้เพิ่มราคา
+
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
     }
 }
 </script>

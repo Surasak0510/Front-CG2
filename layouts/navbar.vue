@@ -74,6 +74,8 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
+const db = firebase.firestore();
 export default{
     
     data() {
@@ -90,6 +92,28 @@ export default{
     mounted() {
         // console.log("Thisssss page",$nuxt.$route.name)
         this.page = $nuxt.$route.name
+
+        const id_store_l = localStorage.getItem("id_store");
+        var docRef = db.collection("register").doc(id_store_l);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+
+                this.storeID = id_store_l
+                this.UName = doc.data().name
+                this.pic = doc.data().previewImage
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
+    },
+    getDocument(){
+        
     }
 }
 </script>

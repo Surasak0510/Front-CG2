@@ -23,6 +23,10 @@
     font-size: 2vh;
 }
 
+.break {
+    line-break: auto;
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .Size-text {

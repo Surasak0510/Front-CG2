@@ -180,26 +180,89 @@ export default {
     methods: {
         submit(event){
             // event.preventDefault();
-            console.log(this.data)
+            // console.log(this.data)
         
+            //register
             console.log(this.data.email, this.data.password)
             firebase.auth().createUserWithEmailAndPassword(this.data.email, this.data.password)
             .then((userCredential) => {
+
                 // Signed in 
                 var user = userCredential.user;
                 // ...
-                console.log(user)   
-    
-                // ทำการอัปเดต photoURL
-                user.updateProfile({
-                photoURL: 'https://example.com/photo.jpg' // URL ของรูปภาพที่คุณต้องการใส่
-                })
-                .then(() => {
-                // การอัปเดตสำเร็จ
-                })
-                .catch((error) => {
-                // เกิดข้อผิดพลาดในการอัปเดต
-                });
+                // console.log(user) 
+
+                 //save data
+            // Initialize Cloud Firestore and get a reference to the service
+            const db = firebase.firestore();
+            
+            // G_id
+
+            var docRef = db.collection("g_id").doc("g_id");
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    const uid_data = doc.data();
+                    const incrementedUid = Number(uid_data.uid) + 1;
+                    uid_data.uid = incrementedUid.toString();
+                    console.log(uid_data.uid); 
+                    db.collection("g_id").doc('g_id').set({
+                        uid: uid_data.uid 
+                    })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+                    
+                    
+                    // Add a new document in collection "cities"
+                    db.collection("register").doc(uid_data.uid).set({
+                        uid: user.uid,
+                        previewImage: this.data.previewImage,
+                        name:       this.data.name,
+                        type:       this.data.type,
+                        province:   this.data.province,
+                        district:   this.data.district,
+                        parish:     this.data.parish,
+                        number:     this.data.number,  
+                    })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        // ทำการอัปเดต photoURL
+                        
+                        user.updateProfile({
+                            displayName: uid_data.uid
+                        })
+                        .then(() => {
+                        // การอัปเดตสำเร็จ
+                        })
+                        .catch((error) => {
+                        // เกิดข้อผิดพลาดในการอัปเดต
+                        });
+
+                        localStorage.setItem("id_store", uid_data.uid);
+                        const id_store_l = localStorage.getItem("id_store");
+                        if(id_store_l !== null){ {
+                            window.location = "/login"
+                        }
+                      }
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
+
+                
                 
             })
             .catch((error) => {
@@ -209,6 +272,10 @@ export default {
                 // ..
             });
 
+
+
+             
+           
 
             // if(this.data) {
             //     this.$swal({

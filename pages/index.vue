@@ -129,10 +129,12 @@
                 </button>
             </div>
         </b-modal>
-    </div>
+    </div> 
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
+const db = firebase.firestore();
 export default {
     layout: 'store',
     data() {
@@ -152,22 +154,149 @@ export default {
     },
     methods: {
         checkcode() {
-            if (this.code == '9A5D5f') {
-                this.$swal({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'complete the code',
-                    showConfirmButton: false,
-                    timer: 1500,
-                })
-            } else {
-                this.$swal({
+
+        var docRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    // console.log("Document data:", doc.data());
+
+
+                    if (doc.data().check !== false) {
+                        this.$swal({
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: 'complete the code',
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            })
+
+                                            var washingtonRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
+
+                                            // Set the "capital" field of the city 'DC'
+                                            return washingtonRef.update({
+                                                check: false
+                                            })
+                                            .then(() => {
+                                                console.log("Document successfully updated!");
+
+                                                var docRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
+
+                                                docRef.get().then((doc) => {
+                                                    if (doc.exists) {
+                                                        // console.log("Document data:", doc.data());
+                                                        const tel_d = doc.data().tel
+                                                        
+                                                        var docRef = db.collection(`/register/${this.Store.ID}/proposts/`).doc(doc.data().uid_p);
+
+                                                        docRef.get().then((doc) => {
+                                                            if (doc.exists) {
+                                                                // console.log("Document data:", doc.data());
+
+                                                                // doc.data().point - /register/100026/users/0933891077
+
+                                                                const point_p = Number (doc.data().point)
+
+                                                                // /register/100026/g_uid_p/100012
+                                                                        //  console.log("Document data:", doc.data().tel);
+                                                                var docRef = db.collection(`/register/${this.Store.ID}/users/`).doc(tel_d);
+
+                                                                docRef.get().then((doc) => {
+                                                                    if (doc.exists) {
+                                                                        // console.log("Document data:", doc.data());
+                                                                    
+                                                                        if (doc.data().point >= point_p) {
+                                                                        const sump = Number (doc.data().point) -  Number (point_p)
+                                                                     var washingtonRef = db.collection(`/register/${this.Store.ID}/users/`).doc(tel_d);
+
+                                                                    // Set the "capital" field of the city 'DC'
+                                                                    return washingtonRef.update({
+                                                                        point: sump.toString()
+                                                                    })
+                                                                    .then(() => {
+                                                                        console.log("Document successfully updated!");
+                                                                    })
+                                                                    .catch((error) => {
+                                                                        // The document probably doesn't exist.
+                                                                        console.error("Error updating document: ", error);
+                                                                    });
+
+                                                                    }
+
+
+                                                                    else {
+                                                                        this.$swal({
+                                                                            icon: 'error',
+                                                                            title: 'No such code found',
+                                                                            text: 'Something went wrong!',
+                                                                            // footer: '<a href="">Why do I have this issue?</a>'
+                                                                        })
+                                                                    }
+
+
+
+                                                                    } else {
+                                                                        // doc.data() will be undefined in this case
+                                                                        console.log("No such document!14");
+                                                                    }
+                                                                }).catch((error) => {
+                                                                    console.log("Error getting document:", error);
+                                                                });
+
+
+                                                                
+
+                                                               
+
+                                                            } else {
+                                                                // doc.data() will be undefined in this case
+                                                                console.log("No such document!13");
+                                                            }
+                                                        }).catch((error) => {
+                                                            console.log("Error getting document:", error);
+                                                        });
+                                                        
+                                                        
+
+
+
+                                                    } else {
+                                                        // doc.data() will be undefined in this case
+                                                        console.log("No such document!11");
+                                                    }
+                                                }).catch((error) => {
+                                                    console.log("Error getting document:", error);
+                                                });
+
+
+                                            })
+                                            .catch((error) => {
+                                                // The document probably doesn't exist.
+                                                console.error("Error updating document: ", error);
+                                            });
+
+
+                                          
+
+                    }
+
+      
+                      this.$swal({
                     icon: 'error',
                     title: 'No such code found',
                     text: 'Something went wrong!',
                     // footer: '<a href="">Why do I have this issue?</a>'
                 })
-            }
+        
+
+                } else {
+                  
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
+           
         },
         downloadImage(fileName) {
             const imageSrc = `/Certi/${fileName}` // กำหนดที่อยู่ของรูปภาพ
@@ -187,5 +316,25 @@ export default {
             document.body.removeChild(a)
         },
     },
+    mounted() {
+           const id_store_l = localStorage.getItem("id_store") 
+        var docRef = db.collection("register").doc(id_store_l);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                
+                this.Store.ID = id_store_l
+                this.Store.name = doc.data().name
+                this.Store.img = doc.data().previewImage
+                this.Store.loc = doc.data().province + " " + doc.data().district + " " + doc.data().parish
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
 }
 </script>

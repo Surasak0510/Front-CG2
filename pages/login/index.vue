@@ -101,7 +101,16 @@ export default {
             .then((userCredential) => {
                 // Signed in
                 var user = userCredential.user;
-                console.log(user)
+                // console.log(user)
+                console.log();
+
+                localStorage.setItem("id_store", user.displayName);
+
+                const id_store_l = localStorage.getItem("id_store");
+                        if(id_store_l !== null){ {
+                            window.location = "/";
+                        }
+                    }
             })
             .catch((error) => {
                 var errorCode = error.code;

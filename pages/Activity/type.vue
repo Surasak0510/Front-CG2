@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 // main.js
 import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -113,10 +114,17 @@ export default {
                 // console.log(this.sumpoint)
             }
 
+            const db = firebase.firestore();
+            var docRef = db.collection(`register/${this.store}/users`).doc(this.tel);
 
-            this.$swal({
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        
+
+
+                        this.$swal({
                 title:this.tel + " ได้รับ " + this.sumpoint + " point",
-                text: "ยอดคงเหลือ " + (this.UserPoint + this.sumpoint) + " point",
+                text: "ยอดคงเหลือ " + (doc.data().point) + " point",
                 imageUrl: this.StoreImg,
                 imageWidth: 400,
                 imageHeight: 200,
@@ -125,15 +133,86 @@ export default {
                 confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = `/activity?store=${this.store}`
+                        const db = firebase.firestore();
+                        var docRef = db.collection(`register/${this.store}/users`).doc(this.tel);
+                        docRef.get().then((doc) => {
+                            if (doc.exists) {
+                                var washingtonRef = db.collection(`register/${this.store}/users`).doc(this.tel);
+                                var sum = Number (this.sumpoint)+Number (doc.data().point)
+                                return washingtonRef.update({
+                                    point: sum,
+                                    time: new Date().toString() 
+                                })  
+                                .then(() => {
+                                    console.log("Document successfully updated!");
+                                    window.location = `/activity?store=${this.store}`
+                                })
+                                .catch((error) => {
+                                    console.error("Error updating document: ", error);
+                                });
+                            } else {
+                                console.log("No such document!");
+                            }
+                        }).catch((error) => {
+                            console.log("Error getting document:", error);
+                        });
                     }
                     })
+
+
+                    } else {
+                        console.log("No such document!");
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+
+            
         }
     },
     mounted() {
         this.store = this.$route.query.store
         this.tel = this.$route.query.tel
         // console.log(this.store,this.tel)
+        const db = firebase.firestore();
+        var docRef_tel = db.collection(`register/${this.store}/users`).doc(this.tel);
+
+        docRef_tel.get().then((doc) => {
+            if (doc.exists) {
+                // console.log("Document data:", doc.data());
+                // db.collection(`register/${this.store}/users`).doc(this.tel).set({
+                //     telUser: "0820510100",
+                //     point: "8",
+                //     type: "+",
+                //     time: "11/10/1445",
+                //     Detail: "ไม่รับถุงพลาสติก",
+                //     })
+                //     .then(() => {
+                //         console.log("Document successfully written!");
+                //     })
+                //     .catch((error) => {
+                //         console.error("Error writing document: ", error);
+                //     });
+
+            } else {
+                console.log("No such document!");
+                db.collection(`register/${this.store}/users`).doc(this.tel).set({
+                    telUser: this.tel,
+                    point: 0,
+                    type: "+",
+                    time: new Date(),
+                    Detail: "ไม่รับถุงพลาสติก",
+                    })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
 }
 </script>
