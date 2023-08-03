@@ -23,7 +23,8 @@
                     </div>
                     <div class="row my-5">
                         <div class="col-12 d-flex justify-content-center">
-                            <a :href="`/activity?store=${storeID}`" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a>
+                            <!-- <a :href="`/activity?store=${storeID}`" @click="checkcode" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a> -->
+                            <a @click="checkcode" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a>
                         </div>
                     </div>
                 </div>
@@ -33,11 +34,38 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 export default{
+    
     data() {
         return{
             storeID: ""
         }
+    },
+    methods: {
+        checkcode(event) {
+            event.preventDefault();
+                const db = firebase.firestore();
+                var docRef = db.collection("register").doc(this.storeID);
+                    docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        window.location = `/activity?store=${this.storeID}`
+                    } else {
+                        console.log("No store id");
+                        this.$swal({
+                            icon: 'error',
+                            title: 'No shop id',
+                            text: 'Something went wrong!',
+                        }).then((result) => {
+                            window.location = "/activity/store"
+                        })
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+      
+        }
+         
     }
 }
 </script>

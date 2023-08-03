@@ -71,7 +71,7 @@
         </div>
 
         <div class="row mx-0 mt-5 py-3">
-            <b-button v-b-modal.modal-1 class="btn color-main text-white mx-auto mb-3" style="width: 10%;border: 1px solid #00CC99;">ชำระ</b-button>
+            <b-button v-b-modal.modal-1  class="btn color-main text-white mx-auto mb-3" style="width: 10%;border: 1px solid #00CC99;">ชำระ</b-button>
         </div>
 
         <!-- Modal -->
@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
+const db = firebase.firestore();
 export default{
     data() {
         return{
@@ -123,13 +125,37 @@ export default{
                 cc: this.CC,
                 time: ""
             }
-            window.location = '/CCStore/BuyCC?store=' + this.StoreID + '&idBuy=' +  this.idBuy
+
+
+            // Add a new document with a generated id.
+         db.collection('CCStore').add(data)
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            this.idBuy = docRef.id
+            if (docRef.id !== null){
+                window.location = '/CCStore/BuyCC?store=' + this.StoreID + '&idBuy=' +  this.idBuy
+            }
+            
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+           
+
+
+            
         }
     },
     mounted() {
         this.Datenow =  new Date().toLocaleString('th', {hour12: true,});
         this.StoreID = this.$route.query.store
+        const id_store_l = localStorage.getItem("id_store");
+        this.StoreID =id_store_l
         // console.log(this.StoreID)
+
+        
+
+        
     }
 }
 </script>

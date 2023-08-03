@@ -76,7 +76,8 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" @click="AddType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
+                        <button type="button" class="btn btn-primary mx-auto" 
+                        @click="Add_data() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
@@ -102,9 +103,10 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 export default {
   name: 'Type',
-  data() {
+      data() {
     return{
         ItemId: "",
         Type: {
@@ -116,62 +118,65 @@ export default {
                 desc: "",
                 Item_id: "",
             },
-        TypeAll: [
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับช้อน/ซ้อม",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
-                    desc: "ไม่รับช้อน/ซ้อม"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับหลอด",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
-                    desc: "ไม่รับหลอด"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับถุง",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
-                    desc: "ไม่รับถุง"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับกล่อง",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
-                    desc: "ไม่รับกล่อง"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับฝา",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
-                    desc: "ไม่รับฝา"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับแก้ว",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
-                    desc: "ไม่รับแก้ว"
-                },
-            ],
+        TypeAll: [ ],
+
+            // TypeAll: [
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับช้อน/ซ้อม",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
+            //         desc: "ไม่รับช้อน/ซ้อม"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับหลอด",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
+            //         desc: "ไม่รับหลอด"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับถุง",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
+            //         desc: "ไม่รับถุง"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับกล่อง",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
+            //         desc: "ไม่รับกล่อง"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับฝา",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
+            //         desc: "ไม่รับฝา"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับแก้ว",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
+            //         desc: "ไม่รับแก้ว"
+            //     },
+            // ],
+
     }
   },
   methods: {
@@ -185,9 +190,23 @@ export default {
         this.Type.Item_id = data.Item_id
     },
     AddType() {
-
+        const db = firebase.firestore();
+            const id_store_l = localStorage.getItem("id_store");
+            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+                title: this.Type.title,
+                type : this.Type.type,
+                count: this.Type.count,
+                point: this.Type.point,
+                img: this.previewImage,
+                desc: this.Type.desc,
+                Item_id: this.Type.Item_id
+            })
+            .then(() => {
+                console.log("Document successfully updated!");
+            });
     },
     pickFile () {
+        
             let input = this.$refs.fileInput
             let file = input.files
             if (file && file[0]) {
@@ -200,9 +219,19 @@ export default {
             this.$emit('input', file[0])
             }
     },
-    Delete(data) {
+    Delete() {
+        const db = firebase.firestore();
             // console.log(data)
-            alert("ลบProMotion : " + data)
+            const id_store_l = localStorage.getItem("id_store");
+            db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+            })
+            .then((result) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+            });
     },
     Add() {
         this.Type = {
@@ -214,7 +243,92 @@ export default {
             desc: "",
             Item_id: "",
         }
+
+
+        // // Get a reference to the Firestore database
+        // const db = firebase.firestore();
+
+
+        // // Add a new document in collection "cities" with an automatically generated ID
+        // db.collection("posts").add({
+        //     title: "",
+        //     type: "",
+        //     count: "",
+        //     point: "",
+        //     img: "",
+        //     desc: "",
+        //     Item_id: "",
+        // })
+        // .then((docRef) => {
+        //     console.log("Document successfully written with ID: ", docRef.id);
+        // })
+        // .catch((error) => {
+        //     console.error("Error writing document: ", error);
+        // });
+
+
+    },
+    Add_data() {
+        const db = firebase.firestore();
+            // Add a new document in collection "cities" with an automatically generated ID
+            const id_store_l = localStorage.getItem("id_store");
+            db.collection(`/register/${id_store_l}/type/`).add({
+                title: this.Type.title,
+                type : this.Type.type,
+                count: this.Type.count,
+                point: this.Type.point,
+                img: this.previewImage,
+                desc: this.Type.desc,
+                Item_id: this.Type.Item_id
+            })
+                .then((docRef) => {
+                    // console.log("Document successfully written with ID: ", docRef.id);
+                })
+                .catch((error) => {
+                    // console.error("Error writing document: ", error);
+                });
+            // console.log("add");
+    },
+    ConfigPromo() {
+
+            const db = firebase.firestore();
+            const id_store_l = localStorage.getItem("id_store");
+            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+                title: this.Type.title,
+                type : this.Type.type,
+                count: this.Type.count,
+                point: this.Type.point,
+                img: this.previewImage,
+                desc: this.Type.desc,
+                Item_id: this.Type.Item_id
+            })
+            .then(() => {
+                console.log("Document successfully updated!");
+            });
+
+
+            }
+
+  },
+  mounted() {
+        const id_store_l = localStorage.getItem("id_store");
+        const db = firebase.firestore();
+        db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                let dataPro ={
+                id : doc.id,
+                title: this.Type.title,
+                type : this.Type.type,
+                count: this.Type.count,
+                point: this.Type.point,
+                img: this.Type.img,
+                desc: this.Type.desc,
+                Item_id: this.Type.Item_id
+            }
+            this.TypeAll.push(dataPro)
+            });
+        });
     }
-  }
 }
 </script>

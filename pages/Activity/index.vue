@@ -73,7 +73,7 @@
 
 <script>
 import checkpoint from '~/components/checkpoint.vue'
-
+import firebase from '~/plugins/firebase.js'
 export default {
   components: { checkpoint },
     data() {
@@ -89,23 +89,41 @@ export default {
         }
     },
     methods: {
+    
 
     },
     mounted() {
-        this.storeID = this.$route.query.store
-        console.log(this.storeID)
-        if(this.storeID === null || this.storeID === undefined) {
-            // console.log("Testtt")
-            this.$swal({
-                icon: 'error',
-                title: 'No shop id',
-                text: 'Something went wrong!',
-                // confirmButtonText: 'Ok',
-            }).then((result) => {
-                window.location = "/"
-            })
-        }
 
+            const db = firebase.firestore();
+            this.storeID = this.$route.query.store
+            console.log(this.storeID)
+            var docRef = db.collection("register").doc(this.storeID);
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    this.Store.name = doc.data().name
+                    this.Store.ID = this.storeID
+                    this.Store.img = doc.data().previewImage
+                    this.Store.loc = doc.data().province + " " + doc.data().district + " " + doc.data().parish
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+                
+                    console.log(this.storeID)
+                    if(this.storeID === null || this.storeID === undefined) {
+                        this.$swal({
+                            icon: 'error',
+                            title: 'No shop id',
+                            text: 'Something went wrong!',
+                        }).then((result) => {
+                            window.location = "/"
+                        })
+                    }
+
+          
     }
 }
 </script>
