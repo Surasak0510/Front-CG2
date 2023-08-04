@@ -71,6 +71,11 @@
                 <div class="row my-5">
                     <div class="col-6 d-flex">
                         <img class="mx-auto" :src="`https://barcode.tec-it.com/barcode.ashx?data=${ Pay.id }&code=QRCode&eclevel=L`" alt="" style="width: 20%;">
+                        <a  class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mt-auto" data-download="PayIn"
+                                        style="cursor: pointer;"
+                                        @click="downloadImage('PayIn.png')">
+                                        Download PayIn
+                        </a>
                     </div>
                     <div class="col-6 d-flex">
                         <nuxt-link :to="`/`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
@@ -96,6 +101,25 @@ export default{
                 total:"0000"
             }
         }
+    },
+    methods: {
+        downloadImage(fileName) {
+            const imageSrc = `/Certi/${fileName}` // กำหนดที่อยู่ของรูปภาพ
+
+            // สร้าง element <a> และกำหนดค่าให้เป็นรูปภาพที่ต้องการให้ดาวน์โหลด
+            const a = document.createElement('a')
+            a.href = imageSrc
+            a.download = fileName // กำหนดชื่อไฟล์ที่ต้องการให้ดาวน์โหลด
+
+            // เพิ่ม element <a> เข้าไปใน body
+            document.body.appendChild(a)
+
+            // คลิกที่ element <a> เพื่อดาวน์โหลด
+            a.click()
+
+            // ลบ element <a> ออกจาก body เพื่อไม่ทำให้มีอิทธิพลต่อการคลิกอื่น
+            document.body.removeChild(a)
+        },
     },
     mounted() {
         this.StoreID = this.$route.query.store
