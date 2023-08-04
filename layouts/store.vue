@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div>
         <div class="container-fluid color-main" style="height: 35px; border-bottom: 10px solid #E1E4E2">
         </div>
@@ -35,12 +35,33 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
+const db = firebase.firestore();
 export default{
     data() {
         return{
             pic: "https://www.wilsoncenter.org/sites/default/files/styles/large/public/media/images/person/james-person-1.jpg",
             name: "CarbonGo_01"
         }
+    },
+    mounted() {
+        const id_store_l = localStorage.getItem("id_store");
+        console.log(id_store_l);
+        var docRef = db.collection("register").doc(id_store_l);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+
+                this.name = doc.data().name
+                this.pic = doc.data().previewImage
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
 }
 </script>

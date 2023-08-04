@@ -46,38 +46,59 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase.js'
 export default {
   name: 'hispoint',
   data() {
     return{
         storeID : "",
-        History: [
-            {
-                telUser: "0966383992",
-                point: "8",
-                type: "+",
-                time: "11/10/1445",
-                Detail: "ไม่รับหลอด",
-            },
-            {
-                telUser: "0820510100",
-                point: "8",
-                type: "+",
-                time: "11/10/1445",
-                Detail: "ไม่รับถุงพลาสติก",
-            },
-            {
-                telUser: "0545520654",
-                point: "100",
-                type: "1",
-                time: "11/10/1445",
-                Detail: "แลกคะแนนรับส่วนลด",
-            },
-        ]
+        History: []
+            // History: [
+            // {
+            //     telUser: "0966383992",
+            //     point: "8",
+            //     type: "+",
+            //     time: "11/10/1445",
+            //     Detail: "ไม่รับหลอด",
+            // },
+            // {
+            //     telUser: "0820510100",
+            //     point: "8",
+            //     type: "+",
+            //     time: "11/10/1445",
+            //     Detail: "ไม่รับถุงพลาสติก",
+            // },
+            // {
+            //     telUser: "0545520654",
+            //     point: "100",
+            //     type: "1",
+            //     time: "11/10/1445",
+            //     Detail: "แลกคะแนนรับส่วนลด",
+            // },
+        // ]
     }
   },
   mounted() {
         this.storeID = this.$route.query.store
+
+
+        const id_store_l = localStorage.getItem("id_store");
+        const db = firebase.firestore();
+        db.collection(`/register/${id_store_l}/users/`).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                let dataPro ={
+                id : doc.id,
+                telUser: doc.data().telUser,
+                point:  doc.data().point,
+                type:   doc.data().type,
+                time:   doc.data().time,
+                Detail:     doc.data().Detail
+            }
+            this.History.push(dataPro)
+            });
+        });
+        // console.log(this.History)
   }
 }
 </script>
