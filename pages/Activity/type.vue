@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="row">
-                    <h1 class="text-center fw-bold" style="color: #00CC99;">Select Type</h1>
+                    <h1 class="text-center fw-bold" style="color: #00CC99;">เลือกประเภท</h1>
                 </div>
 
                 <div class="row d-flex justify-content-center mb-5 ">
@@ -40,7 +40,7 @@
                 <!-- {{ check }} -->
                 <div class="row mb-5 d-flex justify-content-end">
                     <button type="button" class="btn btn-success w-25 rounded-5" @click="postpoint()"
-                        style="background-color: #00CC99; color: white; ">Next</button>
+                        style="background-color: #00CC99; color: white; ">ต่อไป</button>
                 </div>
 
 
@@ -66,13 +66,13 @@ export default {
             UserPoint: 0,
             sumpoint: 0,
             store: "",
-            StoreImg: "https://unsplash.it/400/200",
+            StoreImg: "https://cdn.discordapp.com/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
             tel: "",
             check: [],
             type: [
                 {
                     img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
-                    title: "ไม่รับช้อน/ซ้อม",
+                    title: "ไม่รับช้อน/ส้อม",
                     Item_id: "1001",
                     point: 100
                 },
@@ -151,14 +151,14 @@ export default {
 
 
                     this.$swal({
-                        title: this.tel + " ได้รับ " + this.sumpoint + " point",
-                        text: "ยอดคงเหลือ " + ( + this.sumpoint) + " point",
+                        title: this.tel + " ได้รับ " + this.sumpoint + " แต้ม",
+                        text: "ยอดคงเหลือ " + ( + this.sumpoint) + " แต้ม",
                         imageUrl: this.StoreImg,
                         imageWidth: 400,
                         imageHeight: 200,
                         imageAlt: 'Custom image',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
+                        confirmButtonColor: '#00CC99',
+                        confirmButtonText: 'ตกลง'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             const db = firebase.firestore();
@@ -208,7 +208,6 @@ export default {
 
         docRef_tel.get().then((doc) => {
             if (doc.exists) {
-                // console.log("Document data:", doc.data());
                 // db.collection(`register/${this.store}/users`).doc(this.tel).set({
                 //     telUser: "0820510100",
                 //     point: "8",

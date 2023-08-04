@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <img src="../../static/Logo.png" alt="" style="width: 20vh;">
-                    <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2></strong>
+                    <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">กิจกรรมสะสมแลกเปลี่ยน</h2></strong>
                     <checkpoint class="ps-5"/>
                     <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #00CC99; color: #ffffff; border: 2px solid #00CC99;">เช็คคะแนน</b-button>
                 </div>
@@ -12,8 +12,8 @@
             <div class="row rounded-5 p-5 my-5" style="background-color: #ECF0EE;">
                 <div class="col-12">
                     <div class="row rounded-5 p-4 position-relative" style="background-color: #66EDCB;  border: 5px solid white;">
-                        <div class="col-12 col-md-4 d-flex justify-content-center">
-                            <img :src="Store.img" alt="" style="width: 20vh;">
+                        <div class="col-12 col-md-4 d-flex justify-content-center ms-2 me-3">
+                            <img class="rounded-5" :src="Store.img" alt="" style="width: 20vh;">
                         </div>
                         <div class="col">
                             <div class="row">
@@ -47,25 +47,25 @@
         <!-- Modal -->
         <b-modal id="Collect" centered hide-footer>
             <template #modal-title>
-                <Strong><h1 style="color: #00CC99; ">Phone Number</h1></Strong>
+                <Strong><h1 style="color: #00CC99; ">เบอร์โทรศัพท์</h1></Strong>
             </template>
             <div class="d-block text-center">
-                <input  type="number" class="form-control rounded-4" placeholder="Number" v-model="tel">
+                <input  type="number" class="form-control rounded-4" placeholder="เบอร์โทรศัพท์" v-model="tel">
             </div>
             <!-- {{ tel }} -->
-            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/type?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">confirm</b-button>
+            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/type?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">ตกลง</b-button>
         </b-modal>
 
         <!-- Modal -->
         <b-modal id="Redeem" centered hide-footer>
             <template #modal-title>
-                <Strong><h1 style="color: #00CC99;">Phone Number</h1></Strong>
+                <Strong><h1 style="color: #00CC99;">เบอร์โทรศัพท์</h1></Strong>
             </template>
             <div class="d-block text-center">
-                <input  type="number" class="form-control rounded-4" placeholder="Number" v-model="tel">
+                <input  type="number" class="form-control rounded-4" placeholder="เบอร์โทรศัพท์" v-model="tel">
             </div>
             <!-- {{ tel }} -->
-            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/redeem?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">confirm</b-button>
+            <b-button class="mt-3 rounded-4 w-50 mx-auto" block :href="`/activity/redeem?store=${ Store.ID }&tel=${ tel }`"  style="background-color: #00CC99; border: 1px solid white;">ตกลง</b-button>
         </b-modal>
 
     </div>

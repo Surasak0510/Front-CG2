@@ -2,7 +2,7 @@
     <div>
         <div class="row mx-0">
             <div class="col-6">
-                <h1 class="color text-center" style="font-size: 4vw;">Carbon Market</h1>
+                <h1 class="color text-center" style="font-size: 4vw;">ตลาดคาร์บอน</h1>
             </div>
             <!-- <div class="col-6 d-flex">
                 <button class="btn btn-link ms-auto h-50 mt-auto" style="box-shadow: none;">ตรวจสอบสถานะการชำระ</button>

@@ -24,7 +24,7 @@
                     <div class="row my-5">
                         <div class="col-12 d-flex justify-content-center">
                             <!-- <a :href="`/activity?store=${storeID}`" @click="checkcode" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a> -->
-                            <a @click="checkcode" type="button" class="btn btn-success mx-auto rounded-5 px-4">confirm</a>
+                            <a @click="checkcode" type="button" class="btn btn-success mx-auto rounded-5 px-4">ยืนยัน</a>
                         </div>
                     </div>
                 </div>

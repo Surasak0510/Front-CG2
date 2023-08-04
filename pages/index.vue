@@ -61,7 +61,7 @@
                 <div class="row mt-3">
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-center">
                         <nuxt-link :to="`/CCStore?store=${Store.ID}`" heaf class="btn rounded-5 fw-bold"
-                            style="background-color: #fffb8f">Carbon Market
+                            style="background-color: #fffb8f">ตลาดคาร์บอน
                             <img style="height: 60px" src="~/static/icon/shop.png" alt="" /></nuxt-link>
                     </div>
                     <div class="col-12 col-md-4 my-3">
@@ -95,10 +95,10 @@
 
         <div class="row m-0">
             <b-tabs class="" content-class="">
-                <b-tab title="My Promotion" active>
+                <b-tab title="โปรโมชั่นของฉัน" active>
                     <MyPromotion />
                 </b-tab>
-                <b-tab title="Type" >
+                <b-tab title="ตัวเลือก" >
                     <Type />
                 </b-tab>
                 <b-tab title="ประวัติสะสม">
@@ -164,11 +164,13 @@ export default {
 
                     if (doc.data().check !== false) {
                         this.$swal({
-                                                position: 'top-end',
+                                                // position: 'top-end',
                                                 icon: 'success',
-                                                title: 'complete the code',
-                                                showConfirmButton: false,
-                                                timer: 1500,
+                                                title: 'แลกโปรโมชั่นสำเร็จ',
+                                                confirmButtonColor: '#01ad82',
+                                                confirmButtonText: 'ตกลง'
+                                                // showConfirmButton: false,
+                                                // timer: 1500,
                                             })
 
                                             var washingtonRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
@@ -227,8 +229,10 @@ export default {
                                                                     else {
                                                                         this.$swal({
                                                                             icon: 'error',
-                                                                            title: 'No such code found',
-                                                                            text: 'Something went wrong!',
+                                                                            title: 'เกิดข้อผิดพลาดทางระบบ',
+                                                                            confirmButtonColor: '#01ad82',
+                                                                            confirmButtonText: 'ตกลง'
+                                                                            // text: 'Something went wrong!',
                                                                             // footer: '<a href="">Why do I have this issue?</a>'
                                                                         })
                                                                     }
@@ -283,8 +287,10 @@ export default {
       
                       this.$swal({
                     icon: 'error',
-                    title: 'No such code found',
-                    text: 'Something went wrong!',
+                    title: 'ขออภัยโค้ดนี้ถูกใช้ไปแล้ว',
+                    confirmButtonColor: '#01ad82',
+                    confirmButtonText: 'ตกลง'
+                    // text: 'Something went wrong!',
                     // footer: '<a href="">Why do I have this issue?</a>'
                 })
         

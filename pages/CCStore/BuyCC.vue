@@ -5,37 +5,37 @@
                 <div class="row  p-3 my-5">
                     <div class="col-12 col-md-6">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-12 col-lg-4">
                                 <img src="~/static/Logo.png" alt="" class="w-100">
                             </div>
-                            <div class="col-8 d-flex align-content-center flex-wrap">
-                                <div class="row">
-                                    <h2 style="color: #585858;">ชื่อบัญชี : บจก.Don't sheep</h2>
+                            <div class="col-12 col-lg-8 d-flex align-content-center flex-wrap">
+                                <div class="row mx-0">
+                                    <h3 style="color: #585858;">ชื่อบัญชี : บจก.Don't sheep</h3>
                                 </div>
-                                <div class="row">
-                                    <h2 style="color: #585858;">ธนาคาร : กสิกรไทย</h2>
+                                <div class="row mx-0">
+                                    <h3 style="color: #585858;">ธนาคาร : กสิกรไทย</h3>
                                 </div>
-                                <div class="row">
-                                    <h2 style="color: #585858;">เลขที่บัญชี : 012345678-9</h2>
+                                <div class="row mx-0">
+                                    <h3 style="color: #585858;">เลขที่บัญชี : 012345678-9</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 mt-4">
                         <div class="row" >
                             <div class="col-12  rounded-4 p-3" style="background-color: #E1E4E2;">
-                                <div class="row">
+                                <div class="row my-1">
                                     <h3 style="color: #01AD82;margin: 0px 0px 0px 10px;">ยอดที่ต้องชำระ </h3>
                                 </div>
-                                <div class="row">
+                                <div class="row my-1">
                                     <strong class="text-center fs-3 " style="color: #01AD82; ">{{ Pay.Bath }}</strong>
                                 </div>
-                                <div class="row">
+                                <div class="row my-1">
                                     <div class="col-6">
                                         <h4 style="color: #585858; margin: 0px 0px 0px 10px;">ค่าบริการ</h4>
                                     </div>
                                     <div class="col-6">
-                                        <h4 style="color: #585858;" class="text-center">+ .....</h4>
+                                        <h4 style="color: #585858;" class="text-center">{{  Pay.service }}</h4>
                                     </div>
                                 </div>
                                 <!-- <div class="row">
@@ -47,14 +47,14 @@
                                     </div>
                                 </div> -->
                                 <div class="row pt-4">
-                                    <div class="col-12 col-xl-6">
+                                    <div class="col-12 col-xl-6 mb-2">
                                         <strong>
                                             <h4 style="color: #01AD82; margin: 0px 0px 0px 10px;">ยอดที่ต้องชำระทั้งหมด </h4>
                                         </strong>
                                     </div>
                                     <div class="col-12 col-xl-6">
                                         <strong>
-                                            <h4 style="color: #01AD82;" class="text-center">0000 ฿</h4>
+                                            <h4 style="color: #01AD82;" class="text-center">{{ Pay.total }} ฿</h4>
                                         </strong>
                                     </div>
                                 </div>
@@ -68,16 +68,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-5">
-                    <div class="col-6 d-flex">
-                        <img class="mx-auto" :src="`https://barcode.tec-it.com/barcode.ashx?data=${ Pay.id }&code=QRCode&eclevel=L`" alt="" style="width: 20%;">
-                        <a  class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mt-auto" data-download="PayIn"
-                                        style="cursor: pointer;"
-                                        @click="downloadImage('PayIn.png')">
-                                        Download PayIn
-                        </a>
+                <div class="row my-3">
+                    <div class="col-12 col-md-6">
+                        <div class="row mx-0 my-3">
+                            <div class="col-12 col-md-6 d-flex mb-3">
+                                <img class="mx-auto w-50" :src="`https://barcode.tec-it.com/barcode.ashx?data=${ Pay.id }&code=QRCode&eclevel=L`" alt="">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex">
+                                <a  class="fs-5 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mx-auto mt-auto" data-download="PayIn"
+                                                style="cursor: pointer; color: #01AD82;"
+                                                @click="downloadImage('PayIn.png')">
+                                                ดาวน์โหลดใบชำระเงิน
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-6 d-flex">
+                    <div class="col-12 col-md-6 d-flex">
                         <nuxt-link :to="`/`" type="button" class="btn btn text-white rounded-4 px-4 ms-auto mt-auto" style="background-color: #00CC99;">เสร็จสิ้น</nuxt-link>
                     </div>
                 </div>
@@ -98,6 +104,7 @@ export default{
             Pay: {
                 id: "110123",
                 Bath: "0000",
+                service: "",
                 total:"0000"
             }
         }
@@ -130,8 +137,11 @@ export default{
         docRef.get().then((doc) => {
             if (doc.exists) {
                 // console.log("Document data:", doc.data());
+                let ser = (Number(doc.data().bath) * 0.05)
+                let SumBath =  Number(doc.data().bath) +  ser
                 this.Pay.Bath = doc.data().bath
-                this.Pay.total = "0000"//แก้เพิ่มราคา
+                this.Pay.total = SumBath//แก้เพิ่มราคา
+                this.Pay.service = ser
 
 
             } else {

@@ -2,13 +2,12 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">โปรโมชั่นของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
                 <b-button v-b-modal.Addpromo class="btn p-0 text-white rounded-5" @click="Add()"
-                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มกิจกรรม
-                    promotion</b-button>
+                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มโปรโมชั่นของฉัน</b-button>
             </div>
         </div>
 
@@ -27,8 +26,8 @@
                         </div>
                         <div class="row mt-auto">
                             <div class="col-12">
-                                <b-button v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
-                                <b-button v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
+                                <b-button class="bg-success" v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
+                                <b-button class="bg-danger" v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +36,7 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="ConfigPromo" centered hide-footer title="Edit promotion">
+        <b-modal id="ConfigPromo" centered hide-footer title="แก้ไขโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -109,14 +108,14 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="ConfigPromo() & $bvModal.hide('ConfigPromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
         </b-modal>
 
-        <b-modal id="Addpromo" centered hide-footer title="Add Promotion">
+        <b-modal id="Addpromo" centered hide-footer title="เพิ่มโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -188,7 +187,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="add_data() & $bvModal.hide('Addpromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -288,7 +287,7 @@ export default {
                 {
                     img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
                     title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
-                    desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
+                    desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท",
                     dispoint: "500",
                     Count: "200",
                     PerUser: "1",

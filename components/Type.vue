@@ -2,11 +2,11 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Type</h1>
+                <h1 class="">ตัวเลือกของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
-                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #28a745 ; width: 180px; border: 1px solid #28a745  ;">เพิ่มกิจกรรม Type</b-button>
+                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #01AD82 ; width: 180px; border: 1px solid #01AD82  ;">เพิ่มตัวเลือก</b-button>
             </div>
         </div>
         <div class="row m-0 d-flex justify-content-center">
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="ConfigType" centered hide-footer title="Add Type" >
+        <b-modal id="ConfigType" centered hide-footer title="เพิ่มตัวเลือก" >
             <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
                                     <span class="input-group-text">=</span>
@@ -75,16 +75,16 @@
                             <textarea  class="form-control rounded-5 p-3" v-model="Type.desc"></textarea>
                         </div>
                     </div>
-                    {{ Type }}
+                    <!-- {{ Type }} -->
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" 
+                        <button type="button" class="btn btn-success mx-auto" 
                         @click="AddType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
         </b-modal>
 
-        <b-modal id="AddType" centered hide-footer title="Add Type" >
+        <b-modal id="AddType" centered hide-footer title="เพิ่มตัวเลือก" >
             <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
@@ -104,7 +104,7 @@
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
                                     <span class="input-group-text">=</span>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" 
+                        <button type="button" class="btn btn-success mx-auto" 
                         @click="Add_data() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                 <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
             </div>
             <div class="row">
-                <h3 class="text-center">คุณต้องการลบ Type การสะสมนี้ใช่หรือไม่!!</h3>
+                <h3 class="text-center">คุณต้องการลบตัวเลือกการสะสมนี้ใช่หรือไม่!!</h3>
             </div>
             <div class="row my-5">
                 <!-- {{ Type.Item_id }} -->

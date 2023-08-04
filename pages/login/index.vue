@@ -1,9 +1,9 @@
 <template>
     <div >
 
-        <div class="position-absolute" style="top: 5vh; right: 0;">
+        <div class="position-absolute" style="top: 5vh; right: 1rem;">
             <div class="row m-0" style="margin-top: 10px;">
-                <span>คุณยังไม่มีบัญชีใช่หรือไม่ ? <a href="login/signup">สมัครสมาชิก</a></span>
+                <span>คุณยังไม่มีบัญชีใช่หรือไม่ ? <a href="login/signup" >สมัครสมาชิก</a></span>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                                     </div>
     
                                     <button type="submit" @click="login" class="btn btn btn-block color-main py-2"
-                                        style="color: white; border-radius: 25px;">Login</button>
+                                        style="color: white; border-radius: 25px;">เข้าสู่ระบบ</button>
     
                                     <div class="row mt-4 px-3">
     
@@ -55,7 +55,7 @@
                             </div>
                         </div>
     
-                        <div class="row position-relative d-flex justify-content-center my-4" style="border-top: 1px solid #A19999; margin: 10px 0;">
+                        <!-- <div class="row position-relative d-flex justify-content-center my-4" style="border-top: 1px solid #A19999; margin: 10px 0;">
                             <h5 class="text-center my-2 position-absolute bg-white" style="top: -25px; width: 12%;">
                                 <span >หรือ</span>
                             </h5>
@@ -70,7 +70,7 @@
                                 <img src="../../assets/img/Microsoft.png" alt="Microsoft" >
                                 <p class="text-dark link-underline-dark">Microsoft</p>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 
