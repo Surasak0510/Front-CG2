@@ -6,7 +6,7 @@
                     <img src="../../static/Logo.png" alt="" style="width: 20vh;">
                     <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2></strong>
                     <checkpoint class="ps-5"/>
-                    <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #AFCDFA; color: #0C68F2; border: 2px solid #AFCDFA;">เช็คคะแนน</b-button>
+                    <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #00CC99; color: #ffffff; border: 2px solid #00CC99;">เช็คคะแนน</b-button>
                 </div>
             </div>
             <div class="row rounded-5 p-5 my-5" style="background-color: #ECF0EE;">
@@ -17,13 +17,12 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h1>{{ Store.name }}</h1>
-                                <p>{{ Store.loc }}</p>
+                                <h1 class="fw-bold" style="color: #0A755A;">{{ Store.name }}</h1>
+                                <h5 class="fw-bold" style="color: #0A755A;">{{ Store.loc }}</h5>
                             </div>
                         </div>
-                        <p class="position-absolute text-end" style="top: 1vh; right: 2vh;">ID : {{ Store.ID }}</p>
+                        <p class="position-absolute text-end fw-bold" style="top: 1vh; right: 2vh; font-size: x-large; color: #0A755A;">ID : {{ Store.ID }}</p>
                     </div>
-                    
                     <div class="row my-4" style="border-bottom: 1px solid #A19999;">
                     </div>
 

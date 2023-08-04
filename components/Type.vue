@@ -2,7 +2,7 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">My Type</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
@@ -26,8 +26,8 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-center">
-                        <b-button v-b-modal.AddType @click="Active(item)">แก้ไข</b-button>
-                        <b-button v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
+                        <b-button class="btn btn-success" v-b-modal.AddType @click="Active(item)">แก้ไข</b-button>
+                        <b-button class="btn btn-danger" v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
             </div>
             <div class="row">
-                <h3 class="text-center">คุณต้องการลบTypeการสะสมนี้ใช่หรือไม่!!</h3>
+                <h3 class="text-center">คุณต้องการลบ Type การสะสมนี้ใช่หรือไม่!!</h3>
             </div>
             <div class="row my-5">
                 <!-- {{ Type.Item_id }} -->

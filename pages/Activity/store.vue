@@ -16,7 +16,7 @@
                         <div class="col-12 d-flex justify-content-center">
                             <div class="row p-3 w-75 rounded-5" style="background-color: #CCF5EA;">
                                 <!-- <div class="input-group flex-nowrap"> -->
-                                    <input type="text" class="form-control rounded-5" v-model="storeID" placeholder="Username" aria-label="ระบุเลข" aria-describedby="addon-wrapping" style="border: none; background-color: #CCF5EA;">
+                                    <input type="text" class="form-control rounded-5" v-model="storeID" placeholder="กรอก ID ร้านค้า" aria-label="ระบุเลข" aria-describedby="addon-wrapping" style="border: none; background-color: #CCF5EA;">
                                 <!-- </div> -->
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="row my-5">
                         <div class="col-12 d-flex justify-content-center">
                             <!-- <a :href="`/activity?store=${storeID}`" @click="checkcode" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a> -->
-                            <a @click="checkcode" type="button" class="btn btn-primary mx-auto rounded-5 px-4">confirm</a>
+                            <a @click="checkcode" type="button" class="btn btn-success mx-auto rounded-5 px-4">confirm</a>
                         </div>
                     </div>
                 </div>

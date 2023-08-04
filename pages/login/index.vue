@@ -2,8 +2,8 @@
     <div >
 
         <div class="position-absolute" style="top: 5vh; right: 0;">
-            <div class="row m-0">
-                <span>Don’t have an account ? <a href="login/signup">Sign Up</a></span>
+            <div class="row m-0" style="margin-top: 10px;">
+                <span>คุณยังไม่มีบัญชีใช่หรือไม่ ? <a href="login/signup">สมัครสมาชิก</a></span>
             </div>
         </div>
 
@@ -19,12 +19,12 @@
                                 <form action="">
     
                                     <div class="input-group my-3"> 
-                                        <input type="text" class="form-control py-4" placeholder="Email" v-model="Email"
+                                        <input type="text" class="form-control py-4" placeholder="อีเมล" v-model="Email"
                                             style="border: 1px solid  ##A6A6A6;  border-radius: 25px;">
                                     </div>
     
                                     <div class="input-group my-3">
-                                        <input type="password" class="form-control py-4" placeholder="Password" v-model="Password"
+                                        <input type="password" class="form-control py-4" placeholder="รหัสผ่าน" v-model="Password"
                                             style="border: 1px solid  ##A6A6A6;  border-radius: 25px;">
                                         <!-- <input v-else type="text" class="form-control py-4" placeholder="Password" v-model="Password"
                                             style="border: 1px solid  ##A6A6A6;  border-radius: 25px;"> -->
@@ -40,13 +40,13 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="RememberMe"
                                                     checked />
-                                                <label class="form-check-label" for="RememberMe" style="color: #A19999;"> Remember me</label>
+                                                <label class="form-check-label" for="RememberMe" style="color: #A19999;"> จำฉันไว้ในระบบ</label>
                                             </div>
                                         </div>
     
                                         <div class="col d-flex justify-content-end">
                                             <!-- Simple link -->
-                                            <a href="#!" class="text-end" style="color: #A19999;">Forgot password?</a>
+                                            <a href="#!" class="text-end" style="color: #A19999;">ลืมรหัสผ่าน</a>
                                         </div>
     
                                     </div>
@@ -57,7 +57,7 @@
     
                         <div class="row position-relative d-flex justify-content-center my-4" style="border-top: 1px solid #A19999; margin: 10px 0;">
                             <h5 class="text-center my-2 position-absolute bg-white" style="top: -25px; width: 12%;">
-                                <span >or</span>
+                                <span >หรือ</span>
                             </h5>
                         </div>
     

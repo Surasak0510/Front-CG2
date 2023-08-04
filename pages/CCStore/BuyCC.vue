@@ -10,13 +10,13 @@
                             </div>
                             <div class="col-8 d-flex align-content-center flex-wrap">
                                 <div class="row">
-                                    <h2 style="color: #585858;">ชื่อบัญชี : Carbon Go</h2>
+                                    <h2 style="color: #585858;">ชื่อบัญชี : บจก.Don't sheep</h2>
                                 </div>
                                 <div class="row">
-                                    <h2 style="color: #585858;">ธนาคาร : ......................</h2>
+                                    <h2 style="color: #585858;">ธนาคาร : กสิกรไทย</h2>
                                 </div>
                                 <div class="row">
-                                    <h2 style="color: #585858;">เลขที่บัญชี : ...................</h2>
+                                    <h2 style="color: #585858;">เลขที่บัญชี : 012345678-9</h2>
                                 </div>
                             </div>
                         </div>
@@ -25,36 +25,36 @@
                         <div class="row" >
                             <div class="col-12  rounded-4 p-3" style="background-color: #E1E4E2;">
                                 <div class="row">
-                                    <h3 style="color: #01AD82;">ยอดที่ต้องชำระ</h3>
+                                    <h3 style="color: #01AD82;margin: 0px 0px 0px 10px;">ยอดที่ต้องชำระ </h3>
                                 </div>
                                 <div class="row">
-                                    <strong class="text-center fs-1" style="color: #01AD82;">{{ Pay.Bath }}</strong>
+                                    <strong class="text-center fs-3 " style="color: #01AD82; ">{{ Pay.Bath }}</strong>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h4 style="color: #585858;">ค่าบริการ</h4>
+                                        <h4 style="color: #585858; margin: 0px 0px 0px 10px;">ค่าบริการ</h4>
                                     </div>
                                     <div class="col-6">
                                         <h4 style="color: #585858;" class="text-center">+ .....</h4>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-6">
                                         <h4 style="color: #585858;">ค่าภาษี</h4>
                                     </div>
                                     <div class="col-6">
                                         <h4 style="color: #585858;" class="text-center">+ .....</h4>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row pt-4">
                                     <div class="col-12 col-xl-6">
                                         <strong>
-                                            <h1 style="color: #01AD82;">ยอดที่ต้องชำระทั้งหมด </h1>
+                                            <h4 style="color: #01AD82; margin: 0px 0px 0px 10px;">ยอดที่ต้องชำระทั้งหมด </h4>
                                         </strong>
                                     </div>
                                     <div class="col-12 col-xl-6">
                                         <strong>
-                                            <h1 style="color: #01AD82;" class="text-center">0000 ฿</h1>
+                                            <h4 style="color: #01AD82;" class="text-center">0000 ฿</h4>
                                         </strong>
                                     </div>
                                 </div>

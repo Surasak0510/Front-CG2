@@ -10,13 +10,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
-                                    <p class="text-center">ระดับคุณภาพร้าน</p>
+                                    <p class="text-center" style="margin-top: 10px;">ระดับคุณภาพร้าน</p>
                                 </div>
                                 <div class="row rounded-5">
                                     <b-form-rating v-model="Store.rating" variant="warning" class="rounded-5 w-75 mx-auto"
                                         style="background-color: #e1e4e2" readonly></b-form-rating>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 10px;">
                                     <p v-if="Store.rating <= 1" class="text-center" style="color: red">
                                         ควรปรับปรุง
                                     </p>
@@ -41,7 +41,7 @@
                         <div class="row mb-3 mt-3">
                             <div class="col-12 col-xl-4">
                                 <h1 class="m-0">{{ Store.name }}</h1>
-                                <p>ID : {{ Store.ID }}</p>
+                                <p style="font-size: 20px;">ID : {{ Store.ID }}</p>
                             </div>
                             <div class="col-12 col-xl-8">
                                 <div class="row rounded-4 p-3 m-0" style="background-color: #bfe1d9">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row py-3 mt-5">
-                            <h2>ยอดคะแนนสะสมการชดเชยคาร์บอนจากลูกค้าทั้งหมด</h2>
+                            <h4>ยอดคะแนนสะสมการชดเชยคาร์บอนจากลูกค้าทั้งหมด</h4>
                         </div>
                         <div class="row m-0">
                             <b-progress :value="Store.CR" max="100000" show-value variant="success" style="height: 50px"
@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-8">
                                 <div class="row d-flex">
-                                    <h4 style="color: #01ad82">ระดับการสะสม - พรีเมียม</h4>
+                                    <h4 style="margin-bottom:10px ; color: #01ad82" >ระดับการสะสม - พรีเมียม</h4>
                                     <button type="button" class="btn rounded-5 fw-light" data-download="4"
                                         @click="downloadImage('4.png')" style="background-color: #e1e4e2; color: #a19999">
                                         ดาวโหลดใบประกาศ
@@ -83,9 +83,9 @@
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-end">
                         <!-- <button type="button" class="btn rounded-5 fw-light" style="background-color: #579AFE; ">ระบุรหัสส่วนลด</button> -->
                         <b-button v-b-modal.modal-center @click="code = null" style="
-                background-color: #579afe;
+                background-color: #01ad82;
                 color: white;
-                border: 1px solid #579afe;
+                border: 1px solid #01ad82;
                 height: 35px;" 
                 class="btn rounded-5">ระบุรหัสส่วนลด</b-button>
                     </div>
@@ -108,12 +108,12 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="modal-center" centered title="Reward" hide-footer>
+        <b-modal id="modal-center" centered title="ระบุรหัสส่วนลด" hide-footer>
             <div class="row">
                 <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 200px" />
             </div>
             <div class="row">
-                <h5 class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h5>
+                <h class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h>
             </div>
             <div class="row mt-4">
                 <div class="input-group mb-3 w-50 mx-auto">
@@ -124,8 +124,8 @@
             </div>
             <div class="row mt-3">
                 <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('modal-center')"
-                    style="background-color: #0c68f2; width: 25%">
-                    confirm
+                    style="background-color: #01ad82; width: 25%">
+                    ยืนยัน
                 </button>
             </div>
         </b-modal>
