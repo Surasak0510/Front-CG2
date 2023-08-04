@@ -98,6 +98,7 @@ export default {
             this.History.push(dataPro)
             });
         });
+        // console.log(this.History)
   }
 }
 </script>

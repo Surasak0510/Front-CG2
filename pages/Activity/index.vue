@@ -6,6 +6,7 @@
                     <img src="../../static/Logo.png" alt="" style="width: 20vh;">
                     <strong><h2 class="m-0 fw-bold" style="color: #00CC99;">Carbon Reward</h2></strong>
                     <checkpoint class="ps-5"/>
+                    <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #AFCDFA; color: #0C68F2; border: 2px solid #AFCDFA;">เช็คคะแนน</b-button>
                 </div>
             </div>
             <div class="row rounded-5 p-5 my-5" style="background-color: #ECF0EE;">

@@ -28,7 +28,7 @@
                         <div class="row mt-auto">
                             <div class="col-12">
                                 <b-button v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
-                                <b-button v-b-modal.Delete @click="Active(item)">ลบ</b-button>
+                                <b-button v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
 
 
 
-        <b-modal id="Delete" size="lg" centered hide-footer hide-header title="BootstrapVue">
+        <b-modal id="DeletePromotion" size="lg" centered hide-footer hide-header >
             <div class="row">
                 <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
             </div>
@@ -209,8 +209,7 @@
                     <!-- {{ StoreId }} -->
                     <button class="btn text-white" style="background-color: #BFE1D9;"
                         @click="$bvModal.hide('Delete')">ยกเลิก</button>
-                    <button class="btn color-main text-white"
-                        @click="Delete() & $bvModal.hide('Delete')">ยืนยัน</button>
+                    <button class="btn color-main text-white" @click="Delete() & $bvModal.hide('Delete')">ยืนยัน</button>
                 </div>
             </div>
         </b-modal>
@@ -365,9 +364,9 @@ export default {
                 PerUser: this.Pro.PerUser,
                 StoreId: this.StoreId
             })
-            .then(() => {
-                console.log("Document successfully updated!");
-            });
+                .then(() => {
+                    console.log("Document successfully updated!");
+                });
 
 
             // const id_store_l = localStorage.getItem("id_store");
@@ -390,7 +389,7 @@ export default {
             // console.log("add");
 
 
-            
+
 
         },
         add_data() {
@@ -401,7 +400,7 @@ export default {
                 HeadPro: this.HeadPro,
                 img: this.previewImage,
                 title: this.Pro.title,
-                type: this.Pro.type,
+                type: "-",
                 desc: this.Pro.desc,
                 date: this.Pro.date,
                 point: this.Pro.point,
@@ -419,20 +418,19 @@ export default {
         },
         Delete() {
             const db = firebase.firestore();
-            // console.log(data)
             const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete().then(() => {
-                console.log("Document successfully deleted!");
-            })
-            .then((result) => {
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-            // console.log("Delete");
+            console.log("deleteeeeeeeeeeeeeeeeeeee" + this.Pro.IDposts)
+            db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
+                .then(() => {
+                    console.log("Document successfully deleted!");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 5000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
 
-            // alert("ลบProMotion : " + this.Pro.IDposts)
+                })
+                .catch((error) => {
+                    console.error("Error removing document: ", error);
+                });
         },
         Add() {
             this.Pro.img = ""
@@ -448,7 +446,7 @@ export default {
 
             // Get a reference to the Firestore database
 
-           
+
 
         },
         AddType() {
@@ -459,7 +457,7 @@ export default {
                 point: this.Type.point,
                 img: this.previewImage,
                 desc: this.Type.desc
-                
+
             }
             // console.table(data)
         },
@@ -476,21 +474,21 @@ export default {
                 // doc.data() is never undefined for query doc snapshots
                 // console.log(doc.id, " => ", doc.data());
                 // this.promotion.push(doc.data())
-                
-                let dataPro =
-                    {
-                    id : doc.id,
-                    title : doc.data().title,
-                    desc : doc.data().desc,
-                    img : doc.data().img,
-                    date : doc.data().date,
-                    point : doc.data().point,
-                    Count : doc.data().Count,
-                    type : doc.data().type,
-                    PerUser : doc.data().PerUser
-                    }
 
-                    this.promotion.push(dataPro)
+                let dataPro =
+                {
+                    id: doc.id,
+                    title: doc.data().title,
+                    desc: doc.data().desc,
+                    img: doc.data().img,
+                    date: doc.data().date,
+                    point: doc.data().point,
+                    Count: doc.data().Count,
+                    type: doc.data().type,
+                    PerUser: doc.data().PerUser
+                }
+
+                this.promotion.push(dataPro)
             });
             // console.log('dadsadwdadw',this.promotion);
         });
