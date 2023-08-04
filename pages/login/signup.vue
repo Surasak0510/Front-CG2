@@ -244,10 +244,10 @@ export default {
 
                         localStorage.setItem("id_store", uid_data.uid);
                         const id_store_l = localStorage.getItem("id_store");
-                        if(id_store_l !== null){ {
+                        // if(id_store_l !== null){ {
                             window.location = "/login"
-                        }
-                      }
+                    //     }
+                    //   }
                     })
                     .catch((error) => {
                         console.error("Error writing document: ", error);
@@ -296,7 +296,7 @@ export default {
               let reader = new FileReader
               reader.onload = e => {
               this.data.previewImage = e.target.result
-              console.log(this.data.previewImage)
+            //   console.log(this.data.previewImage)
             }
             reader.readAsDataURL(file[0])
             this.$emit('input', file[0])
