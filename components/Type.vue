@@ -26,7 +26,7 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-center">
-                        <b-button v-b-modal.AddType @click="Active(item)">แก้ไข</b-button>
+                        <b-button v-b-modal.ConfigType @click="Active(item)">แก้ไข</b-button>
                         <b-button v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
                     </div>
                 </div>
@@ -34,6 +34,56 @@
         </div>
 
         <!-- Modal -->
+        <b-modal id="ConfigType" centered hide-footer title="Add Type" >
+            <div class="row p-4 " >
+                <div class="col-12">
+                    <div class="row">
+                        <label for="basic-url" class="form-label">ระบุชื่อเเคมเปญ</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="text" class="form-control rounded-5" v-model="Type.title" >
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="basic-url" class="form-label">ประเภท</label>
+                                <div class="input-group flex-nowrap">
+                                    <input type="text" class="form-control rounded-5" v-model="Type.type">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <div class="input-group flex-nowrap">
+                                    <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
+                                    <span class="input-group-text">=</span>
+                                    <input type="text" class="form-control rounded-end-5" placeholder="คะแนน" v-model="Type.point">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="file" ref="fileInput" class="form-control rounded-5" @input="pickFile">
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <label for="basic-url" class="form-label">รายละเอียดเพิ่มเติม</label>
+                        <div class="input-group flex-nowrap">
+                            <textarea  class="form-control rounded-5 p-3" v-model="Type.desc"></textarea>
+                        </div>
+                    </div>
+                    {{ Type }}
+                    <div class="row py-2">
+                        <button type="button" class="btn btn-primary mx-auto" 
+                        @click="AddType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
+                    </div>
+                </div>
+            </div>
+        </b-modal>
+
         <b-modal id="AddType" centered hide-footer title="Add Type" >
             <div class="row p-4 " >
                 <div class="col-12">
@@ -117,65 +167,66 @@ export default {
                 img: "",
                 desc: "",
                 Item_id: "",
+                id: "",
             },
-        TypeAll: [ ],
+        // TypeAll: [ ],
 
-            // TypeAll: [
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับช้อน/ซ้อม",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
-            //         desc: "ไม่รับช้อน/ซ้อม"
-            //     },
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับหลอด",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
-            //         desc: "ไม่รับหลอด"
-            //     },
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับถุง",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
-            //         desc: "ไม่รับถุง"
-            //     },
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับกล่อง",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
-            //         desc: "ไม่รับกล่อง"
-            //     },
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับฝา",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
-            //         desc: "ไม่รับฝา"
-            //     },
-            //     {
-            //         Item_id: "1001",
-            //         title: "ไม่รับแก้ว",
-            //         count: "1",
-            //         type: "",
-            //         point: 100,
-            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
-            //         desc: "ไม่รับแก้ว"
-            //     },
-            // ],
+            TypeAll: [
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับช้อน/ซ้อม",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
+                    desc: "ไม่รับช้อน/ซ้อม"
+                },
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับหลอด",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
+                    desc: "ไม่รับหลอด"
+                },
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับถุง",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
+                    desc: "ไม่รับถุง"
+                },
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับกล่อง",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
+                    desc: "ไม่รับกล่อง"
+                },
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับฝา",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
+                    desc: "ไม่รับฝา"
+                },
+                {
+                    Item_id: "1001",
+                    title: "ไม่รับแก้ว",
+                    count: "1",
+                    type: "",
+                    point: 100,
+                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
+                    desc: "ไม่รับแก้ว"
+                },
+            ],
 
     }
   },
@@ -187,12 +238,13 @@ export default {
         this.Type.point = data.point,
         this.Type.img = data.img,
         this.Type.desc = data.desc,
-        this.Type.Item_id = data.Item_id
+        this.Type.Item_id = data.Item_id,
+        this.Type.id = data.id
     },
     AddType() {
         const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+            db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).update({
                 title: this.Type.title,
                 type : this.Type.type,
                 count: this.Type.count,
@@ -269,6 +321,7 @@ export default {
 
     },
     Add_data() {
+        // console.table(this.Type)
         const db = firebase.firestore();
             // Add a new document in collection "cities" with an automatically generated ID
             const id_store_l = localStorage.getItem("id_store");
@@ -282,7 +335,7 @@ export default {
                 Item_id: this.Type.Item_id
             })
                 .then((docRef) => {
-                    // console.log("Document successfully written with ID: ", docRef.id);
+                    console.log("Document successfully written with ID: ", docRef.id);
                 })
                 .catch((error) => {
                     // console.error("Error writing document: ", error);
@@ -293,7 +346,7 @@ export default {
 
             const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+            db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).update({
                 title: this.Type.title,
                 type : this.Type.type,
                 count: this.Type.count,
@@ -316,19 +369,21 @@ export default {
         db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
+                // console.log(doc)
                 let dataPro ={
                 id : doc.id,
-                title: this.Type.title,
-                type : this.Type.type,
-                count: this.Type.count,
-                point: this.Type.point,
-                img: this.Type.img,
-                desc: this.Type.desc,
-                Item_id: this.Type.Item_id
+                title: doc.title,
+                type : doc.type,
+                count: doc.count,
+                point: doc.point,
+                img: doc.img,
+                desc: doc.desc,
+                Item_id: doc.Item_id
             }
-            this.TypeAll.push(dataPro)
+            // this.TypeAll.push(dataPro)
             });
         });
+        // console.log("Testtttttttttt",this.TypeAll)
     }
 }
 </script>
