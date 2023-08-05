@@ -39,7 +39,7 @@
                 </div>
                 <!-- {{ check }} -->
                 <div class="row mb-5 d-flex justify-content-end">
-                    <button type="button" class="btn btn-success w-25 rounded-5" @click="postpoint()"
+                    <button type="button" class="btn btn-success w-25 rounded-5" @click=" postpoint()"
                         style="background-color: #00CC99; color: white; ">ต่อไป</button>
                 </div>
 
@@ -69,76 +69,83 @@ export default {
             StoreImg: "https://cdn.discordapp.com/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
             tel: "",
             check: [],
-            type: [
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
-                    title: "ไม่รับช้อน/ส้อม",
-                    Item_id: "1001",
-                    point: 100
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
-                    title: "ไม่รับหลอด",
-                    Item_id: "1002",
-                    point: 100
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
-                    title: "ไม่รับถุง",
-                    Item_id: "1003",
-                    point: 100
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
-                    title: "ไม่รับกล่อง",
-                    Item_id: "1004",
-                    point: 100
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
-                    title: "ไม่รับฝา",
-                    Item_id: "1005",
-                    point: 100
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
-                    title: "ไม่รับแก้ว",
-                    Item_id: "1006",
-                    point: 100
-                },
-            ]
+            type: [],
+            // type: [
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
+            //         title: "ไม่รับช้อน/ส้อม",
+            //         Item_id: "1001",
+            //         point: 100
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
+            //         title: "ไม่รับหลอด",
+            //         Item_id: "1002",
+            //         point: 100
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
+            //         title: "ไม่รับถุง",
+            //         Item_id: "1003",
+            //         point: 100
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
+            //         title: "ไม่รับกล่อง",
+            //         Item_id: "1004",
+            //         point: 100
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
+            //         title: "ไม่รับฝา",
+            //         Item_id: "1005",
+            //         point: 100
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
+            //         title: "ไม่รับแก้ว",
+            //         Item_id: "1006",
+            //         point: 100
+            //     },
+            // ]
         }
     },
     methods: {
         lastadd() {
-            // Add a new document with a generated id.
+            // console.log(this.check)
+
+            // new Date().toString()
+            // this.tel
+            // 
+            // let tel = this.$route.query.tel
+            // let time = new Date().toString()
+            // let titel ,type ,item_id ,img ,desc= ""
+            // let point = 0
+
+            // for (let i = 0; i < this.check.length; i++) {
+            //     title += this.check[i].title;
+            //     type = this.check[i].type;
+            //     point += this.check[i].point
+            // }
+             //Add a new document with a generated id.
             const db = firebase.firestore();
             db.collection(`register/${this.store}/hispoint`).add({
-               hispoint:this.sumpoint
+                hispoint: this.check,
+                time_type: new Date().toString(),
+                tel_user: this.tel
             })
-                .then((docRef) => {
-                    console.log("Document written with ID: ", docRef.id);
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
-            // Add a new document in collection "cities"
-            // db.collection(`register/${this.store}/users`).doc(this.tel).set({
-            //     name: "Los Angeles",
-            //     state: "CA",
-            //     country: "USA"
-            // })
-            //     .then(() => {
-            //         console.log("Document successfully written!");
-            //     })
-            //     .catch((error) => {
-            //         console.error("Error writing document: ", error);
-            //     });
+            .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+             })
+             .catch((error) => {
+              console.error("Error adding document: ", error);
+              });
         },
         postpoint() {
+            // console.log(this.check)
 
             for (let i = 0; i < this.check.length; i++) {
-                this.sumpoint = this.sumpoint + this.check[i].point;
+                this.sumpoint = Number(this.sumpoint) + Number(this.check[i].point);
                 // console.log(this.sumpoint)
             }
 
@@ -147,12 +154,9 @@ export default {
 
             docRef.get().then((doc) => {
                 if (doc.exists) {
-
-
-
                     this.$swal({
                         title: this.tel + " ได้รับ " + this.sumpoint + " แต้ม",
-                        text: "ยอดคงเหลือ " + ( + this.sumpoint) + " แต้ม",
+                        text: "ยอดคงเหลือ " + (doc.data().point) + " แต้ม",
                         imageUrl: this.StoreImg,
                         imageWidth: 400,
                         imageHeight: 200,
@@ -161,18 +165,18 @@ export default {
                         confirmButtonText: 'ตกลง'
                     }).then((result) => {
                         if (result.isConfirmed) {
+                            this.lastadd()
                             const db = firebase.firestore();
                             var docRef = db.collection(`register/${this.store}/users`).doc(this.tel);
                             docRef.get().then((doc) => {
                                 if (doc.exists) {
                                     var washingtonRef = db.collection(`register/${this.store}/users`).doc(this.tel);
-                                    var sum = Number(this.sumpoint)
+                                    var sum = Number(doc.data().point + this.sumpoint)
                                     return washingtonRef.update({
                                         point: sum,
                                         time: new Date().toString()
                                     })
-                                        .then(() => {
-                                            this.lastadd()
+                                        .then((result) => {
                                             console.log("Document successfully updated!");
                                             window.location = `/activity?store=${this.store}`
                                         })
@@ -190,7 +194,7 @@ export default {
 
 
                 } else {
-                    console.log("No such document!");
+                    console.log("No such document!12");
                 }
             }).catch((error) => {
                 console.log("Error getting document:", error);
@@ -241,6 +245,32 @@ export default {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+    
+
+
+    const id_store_l = localStorage.getItem("id_store");
+        // const db = firebase.firestore();
+        db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                // console.log(doc.data())
+                let dataPro ={
+                id : doc.id,
+                title: doc.data().title,
+                type : doc.data().type,
+                count: doc.data().count,
+                point: doc.data().point,
+                img: doc.data().img,
+                desc: doc.data().desc,
+                Item_id: doc.data().Item_id
+            }
+            this.type.push(dataPro)
+            // console.log(this.TypeAll)
+            });
+        });
+        // console.log("Testtttttttttt",this.TypeAll)
+        
+
     }
 }
 </script>
