@@ -48,7 +48,7 @@
                             <div class="row">
                                 <label for="basic-url" class="form-label">ประเภท</label>
                                 <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control rounded-5" v-model="Type.type">
+                                    <input type="text" class="form-control rounded-5" v-model="Type.Type">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <div class="row">
                                 <label for="basic-url" class="form-label">ประเภท</label>
                                 <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control rounded-5" v-model="Type.type">
+                                    <input type="text" class="form-control rounded-5" v-model="Type.Type">
                                 </div>
                             </div>
                         </div>
@@ -168,7 +168,7 @@ export default {
         ItemId: "",
         Type: {
                 title: "",
-                type: "",
+                Type: "",
                 count: 0,
                 point: 0,
                 img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
@@ -240,7 +240,7 @@ export default {
   methods: {
     Active(data) {
         this.Type.title = data.title,
-        this.Type.type = data.type,
+        this.Type.Type = data.Type,
         this.Type.count = data.count,
         this.Type.point = data.point,
         this.Type.img = data.img,
@@ -334,7 +334,8 @@ export default {
             const id_store_l = localStorage.getItem("id_store");
             db.collection(`/register/${id_store_l}/type/`).add({
                 title: this.Type.title,
-                type : this.Type.type,
+                Type: this.Type,
+                type : "+",
                 count: this.Type.count,
                 point: this.Type.point,
                 img: this.previewImage,
@@ -343,6 +344,7 @@ export default {
             })
                 .then((docRef) => {
                     console.log("Document successfully written with ID: ", docRef.id);
+                    window.location.reload();
                 })
                 .catch((error) => {
                     // console.error("Error writing document: ", error);
@@ -359,7 +361,7 @@ export default {
             const id_store_l = localStorage.getItem("id_store");
             db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).update({
                 title: this.Type.title,
-                type : this.Type.type,
+                Type : this.Type.Tpye,
                 count: this.Type.count,
                 point: this.Type.point,
                 img: this.previewImage,
@@ -367,8 +369,8 @@ export default {
                 Item_id: this.Type.Item_id
             })
             .then((result) => {
-                window.location.reload();
                 console.log("Document successfully updated!");
+                window.location.reload();
             });
 
 

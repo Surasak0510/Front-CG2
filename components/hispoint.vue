@@ -86,15 +86,22 @@ export default {
         const db = firebase.firestore();
         db.collection(`/register/${id_store_l}/hispoint/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-
+                // console.log(doc.data());
+                // let datahis = doc
+                // let history = []
+                // datahis.forEach((data) => {
+                //     console.log("---------",data);
+                // })
                 let dataPro ={
+                history: doc.data().hispoint,
                 telUser: doc.data().tel_user,
                 time:   doc.data().time_type,
+                type: doc.data().type
             }
             this.History.push(dataPro)
             });
-        });
-        // console.log(this.History)
+        })
+        // console.log("Hissssssssssssssss",this.History)
   }
 }
 </script>
