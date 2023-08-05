@@ -2,13 +2,12 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">โปรโมชั่นของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
                 <b-button v-b-modal.Addpromo class="btn p-0 text-white rounded-5" @click="Add()"
-                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มกิจกรรม
-                    promotion</b-button>
+                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มโปรโมชั่นของฉัน</b-button>
             </div>
         </div>
 
@@ -22,13 +21,16 @@
                         <div class="row">
                             <h1>{{ item.title }}</h1>
                         </div>
-                        <div class="row my-2 ">
+                        <div class="row  ">
                             <h5 class="fw-light break">{{ item.desc }}</h5>
+                        </div>
+                        <div class="row my-2">
+                            <h5 clss="fw-light">คะแนนที่ใช้แลกโปรโมชั่น : {{ item.point }}</h5>
                         </div>
                         <div class="row mt-auto">
                             <div class="col-12">
-                                <b-button v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
-                                <b-button v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
+                                <b-button class="bg-success" v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
+                                <b-button class="bg-danger" v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +39,7 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="ConfigPromo" centered hide-footer title="Edit promotion">
+        <b-modal id="ConfigPromo" centered hide-footer title="แก้ไขโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -96,6 +98,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex">
+                        <img class="w-50 mx-auto" :src="`${Pro.img}`" alt="">
+                    </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
                         <div class="input-group flex-nowrap">
@@ -109,14 +114,14 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="ConfigPromo() & $bvModal.hide('ConfigPromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
         </b-modal>
 
-        <b-modal id="Addpromo" centered hide-footer title="Add Promotion">
+        <b-modal id="Addpromo" centered hide-footer title="เพิ่มโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -175,6 +180,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex">
+                        <img class="w-50 mx-auto" :src="`${previewImage}`" alt="">
+                    </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
                         <div class="input-group flex-nowrap">
@@ -188,7 +196,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="add_data() & $bvModal.hide('Addpromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -198,8 +206,8 @@
 
 
         <b-modal id="DeletePromotion" size="lg" centered hide-footer hide-header >
-            <div class="row">
-                <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
+            <div class="row d-flex">
+                <img class="w-50 mx-auto" :src="`${Pro.img}`" alt="">
             </div>
             <div class="row">
                 <h3 class="text-center">คุณต้องการลบโปรโมชั่นการสะสมนี้ใช่หรือไม่!!</h3>
@@ -233,81 +241,81 @@ export default {
                 date: "",
                 Count: "",
                 PerUser: "",
-                img: "",
+                img: "https://media.discordapp.net/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
                 desc: "",
                 IDposts: ""
             },
 
-            // promotion: [],
+            promotion: [],
 
-            promotion: [
-            {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
-                    title: "โปรเดือนเกิด",
-                    desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
-                    dispoint: "200",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1002"
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939524455833620/2.png",
-                    title: "ถ่ายรูป",
-                    desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
-                    dispoint: "300",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1003"
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380570685491/3.png",
-                    title: "โปรเฉพาะช่วงเวลา",
-                    desc: "สิทธิพิเศษเนื่องจากวันพิเศษ! 15 ท่านแรกรับส่วนลด 15% ทุกเมนู **เงื่อนไข ไม่รวมเมนูที่ add เพิ่ม",
-                    dispoint: "400",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1004"
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939525496033280/5.png",
-                    title: "โปรเมนูออกใหม่",
-                    desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
-                    dispoint: "400",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1005"
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
-                    title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
-                    desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
-                    dispoint: "500",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1006"
-                },
-                {
-                    img: "https://media.discordapp.net/attachments/770885361094098947/1135939526100009001/6.png",
-                    title: "โปรแลกซื้อ",
-                    desc: "ใช้ 140 แต้มแลกซื้อ Ice Coffee จากราคาปกติ 65 บาท เหลือเพียง 49 บาท",
-                    dispoint: "140",
-                    Count: "200",
-                    PerUser: "1",
-                    type: "",
-                    date: "2023-08-16",
-                    id: "1007"
-                },
-            ]
+            // promotion: [
+            // {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135939524028026882/1.png",
+            //         title: "โปรเดือนเกิด",
+            //         desc: "ให้เราร่วมเป็นความสุขของคุณในวันเกิดปีนี้ แสดงบัตรประชาชน รับเลย ฟรี ฟรี ฟรี!!",
+            //         dispoint: "200",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1002"
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135939524455833620/2.png",
+            //         title: "ถ่ายรูป",
+            //         desc: "รับฟรี! เพียงแค่ถ่ายรูปเช็คอินกับทางร้าน **เงื่อนไข เปิดโพสเป็นสาธารณะ",
+            //         dispoint: "300",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1003"
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135944380570685491/3.png",
+            //         title: "โปรเฉพาะช่วงเวลา",
+            //         desc: "สิทธิพิเศษเนื่องจากวันพิเศษ! 15 ท่านแรกรับส่วนลด 15% ทุกเมนู **เงื่อนไข ไม่รวมเมนูที่ add เพิ่ม",
+            //         dispoint: "400",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1004"
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135939525496033280/5.png",
+            //         title: "โปรเมนูออกใหม่",
+            //         desc: "ลองก่อนใคร เมนูออกใหม่ พิเศษ!! ลด 10 บาท ทุกเมนู",
+            //         dispoint: "400",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1005"
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
+            //         title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
+            //         desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท",
+            //         dispoint: "500",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1006"
+            //     },
+            //     {
+            //         img: "https://media.discordapp.net/attachments/770885361094098947/1135939526100009001/6.png",
+            //         title: "โปรแลกซื้อ",
+            //         desc: "ใช้ 140 แต้มแลกซื้อ Ice Coffee จากราคาปกติ 65 บาท เหลือเพียง 49 บาท",
+            //         dispoint: "140",
+            //         Count: "200",
+            //         PerUser: "1",
+            //         type: "",
+            //         date: "2023-08-16",
+            //         id: "1007"
+            //     },
+            // ]
         }
     },
     methods: {
@@ -351,10 +359,14 @@ export default {
             //     id: this.StoreId
             // }
             // console.table(data)
+
+            if (this.previewImage != null) {
+                this.Pro.img = this.previewImage
+            }
             const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
             db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).update({
-                img: this.previewImage,
+                img: this.Pro.img,
                 title: this.Pro.title,
                 type: this.Pro.type,
                 desc: this.Pro.desc,
@@ -364,8 +376,10 @@ export default {
                 PerUser: this.Pro.PerUser,
                 StoreId: this.StoreId
             })
-                .then(() => {
+                .then((result) => {
                     console.log("Document successfully updated!");
+                    window.location.reload();
+                    
                 });
 
 
@@ -408,8 +422,8 @@ export default {
                 PerUser: this.Pro.PerUser,
                 StoreId: this.StoreId
             })
-                .then((docRef) => {
-                    // console.log("Document successfully written with ID: ", docRef.id);
+                .then((result) => {
+                    window.location.reload();
                 })
                 .catch((error) => {
                     // console.error("Error writing document: ", error);
@@ -417,21 +431,17 @@ export default {
             console.log("add");
         },
         Delete() {
-            const db = firebase.firestore();
-            const id_store_l = localStorage.getItem("id_store");
-            console.log("deleteeeeeeeeeeeeeeeeeeee" + this.Pro.IDposts)
-            db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
-                .then(() => {
-                    console.log("Document successfully deleted!");
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 5000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
-
-                })
-                .catch((error) => {
-                    console.error("Error removing document: ", error);
-                });
-        },
+    const db = firebase.firestore();
+    const id_store_l = localStorage.getItem("id_store");
+    db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
+        .then((result) => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+}
+,
         Add() {
             this.Pro.img = ""
             this.Pro.title = ""
@@ -472,7 +482,7 @@ export default {
         db.collection(`/register/${id_store_l}/proposts/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                // console.log(doc.id, " => ", doc.data());
+                // console.log(doc.data());
                 // this.promotion.push(doc.data())
 
                 let dataPro =
@@ -488,7 +498,7 @@ export default {
                     PerUser: doc.data().PerUser
                 }
 
-                // this.promotion.push(dataPro)
+                this.promotion.push(dataPro)
             });
             // console.log('dadsadwdadw',this.promotion);
         });

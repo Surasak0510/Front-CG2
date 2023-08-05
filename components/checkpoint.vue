@@ -12,7 +12,7 @@
                         <div class="input-group w-100">
                             <input type="text" class="form-control rounded-4" v-model="UNumber">
                         </div>
-                        {{ UNumber }}
+                        <!-- {{ UNumber }} -->
                     </div>
                 </div>
                 <div class="row my-3 w-100">

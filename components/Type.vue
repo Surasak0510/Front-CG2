@@ -2,11 +2,11 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">ตัวเลือกของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
-                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #28a745 ; width: 180px; border: 1px solid #28a745  ;">เพิ่มกิจกรรม Type</b-button>
+                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #01AD82 ; width: 180px; border: 1px solid #01AD82  ;">เพิ่มตัวเลือก</b-button>
             </div>
         </div>
         <div class="row m-0 d-flex justify-content-center">
@@ -26,15 +26,15 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-center">
-                        <b-button v-b-modal.ConfigType @click="Active(item)">แก้ไข</b-button>
-                        <b-button v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
+                        <b-button class="btn btn-success" v-b-modal.ConfigType @click="Active(item)">แก้ไข</b-button>
+                        <b-button class="btn btn-danger" v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal -->
-        <b-modal id="ConfigType" centered hide-footer title="Add Type" >
+        <b-modal id="ConfigType" centered hide-footer title="เพิ่มตัวเลือก" >
             <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
                                     <span class="input-group-text">=</span>
@@ -62,6 +62,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row my-3 d-flex">
+                        <img class="w-50 mx-auto" :src="`${Type.img}`" alt="">
                     </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
@@ -75,16 +78,16 @@
                             <textarea  class="form-control rounded-5 p-3" v-model="Type.desc"></textarea>
                         </div>
                     </div>
-                    {{ Type }}
+                    <!-- {{ Type }} -->
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" 
-                        @click="AddType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
+                        <button type="button" class="btn btn-success mx-auto" 
+                        @click="ConfigType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
         </b-modal>
 
-        <b-modal id="AddType" centered hide-footer title="Add Type" >
+        <b-modal id="AddType" centered hide-footer title="เพิ่มตัวเลือก" >
             <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
@@ -104,7 +107,7 @@
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
                                     <span class="input-group-text">=</span>
@@ -112,6 +115,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row my-3 d-flex">
+                        <img class="w-50 mx-auto" :src="`${previewImage}`" alt="">
                     </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
@@ -126,7 +132,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" 
+                        <button type="button" class="btn btn-success mx-auto" 
                         @click="Add_data() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -134,11 +140,11 @@
         </b-modal>
 
         <b-modal id="Delete" size="lg" centered hide-footer hide-header >
-            <div class="row">
-                <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
+            <div class="row d-flex">
+                <img class="w-50 mx-auto" :src="`${Type.img}`" alt="">
             </div>
             <div class="row">
-                <h3 class="text-center">คุณต้องการลบTypeการสะสมนี้ใช่หรือไม่!!</h3>
+                <h3 class="text-center">คุณต้องการลบตัวเลือกการสะสมนี้ใช่หรือไม่!!</h3>
             </div>
             <div class="row my-5">
                 <!-- {{ Type.Item_id }} -->
@@ -158,75 +164,76 @@ export default {
   name: 'Type',
       data() {
     return{
+        previewImage: null,
         ItemId: "",
         Type: {
                 title: "",
                 type: "",
-                count: "",
-                point: "",
-                img: "",
+                count: 0,
+                point: 0,
+                img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
                 desc: "",
                 Item_id: "",
                 id: "",
             },
-        // TypeAll: [ ],
+        TypeAll: [ ],
 
-            TypeAll: [
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับช้อน/ซ้อม",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
-                    desc: "ไม่รับช้อน/ซ้อม"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับหลอด",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
-                    desc: "ไม่รับหลอด"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับถุง",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
-                    desc: "ไม่รับถุง"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับกล่อง",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
-                    desc: "ไม่รับกล่อง"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับฝา",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
-                    desc: "ไม่รับฝา"
-                },
-                {
-                    Item_id: "1001",
-                    title: "ไม่รับแก้ว",
-                    count: "1",
-                    type: "",
-                    point: 100,
-                    img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
-                    desc: "ไม่รับแก้ว"
-                },
-            ],
+            // TypeAll: [
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับช้อน/ซ้อม",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714017394748/20230801_223136_0001-removebg-preview.png",
+            //         desc: "ไม่รับช้อน/ซ้อม"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับหลอด",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
+            //         desc: "ไม่รับหลอด"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับถุง",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714784960512/20230801_223136_0003-removebg-preview.png",
+            //         desc: "ไม่รับถุง"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับกล่อง",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715019833344/20230801_223136_0004-removebg-preview.png",
+            //         desc: "ไม่รับกล่อง"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับฝา",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715254706246/20230801_223136_0005-removebg-preview.png",
+            //         desc: "ไม่รับฝา"
+            //     },
+            //     {
+            //         Item_id: "1001",
+            //         title: "ไม่รับแก้ว",
+            //         count: "1",
+            //         type: "",
+            //         point: 100,
+            //         img: "https://media.discordapp.net/attachments/1118454709934637096/1135958715485409380/20230801_223135_0000-removebg-preview.png",
+            //         desc: "ไม่รับแก้ว"
+            //     },
+            // ],
 
     }
   },
@@ -342,7 +349,11 @@ export default {
                 });
             // console.log("add");
     },
-    ConfigPromo() {
+    ConfigType() {
+
+            if (this.previewImage != null) {
+                this.Type.img = this.previewImage
+            }
 
             const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
@@ -355,7 +366,8 @@ export default {
                 desc: this.Type.desc,
                 Item_id: this.Type.Item_id
             })
-            .then(() => {
+            .then((result) => {
+                window.location.reload();
                 console.log("Document successfully updated!");
             });
 
@@ -369,18 +381,19 @@ export default {
         db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
-                // console.log(doc)
+                // console.log(doc.data())
                 let dataPro ={
                 id : doc.id,
-                title: doc.title,
-                type : doc.type,
-                count: doc.count,
-                point: doc.point,
-                img: doc.img,
-                desc: doc.desc,
-                Item_id: doc.Item_id
+                title: doc.data().title,
+                type : doc.data().type,
+                count: doc.data().count,
+                point: doc.data().point,
+                img: doc.data().img,
+                desc: doc.data().desc,
+                Item_id: doc.data().Item_id
             }
-            // this.TypeAll.push(dataPro)
+            this.TypeAll.push(dataPro)
+            // console.log(this.TypeAll)
             });
         });
         // console.log("Testtttttttttt",this.TypeAll)

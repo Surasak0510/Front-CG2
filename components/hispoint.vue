@@ -84,16 +84,12 @@ export default {
 
         const id_store_l = localStorage.getItem("id_store");
         const db = firebase.firestore();
-        db.collection(`/register/${id_store_l}/users/`).get().then((querySnapshot) => {
+        db.collection(`/register/${id_store_l}/hispoint/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
                 let dataPro ={
-                id : doc.id,
-                telUser: doc.data().telUser,
-                point:  doc.data().point,
-                type:   doc.data().type,
-                time:   doc.data().time,
-                Detail:     doc.data().Detail
+                telUser: doc.data().tel_user,
+                time:   doc.data().time_type,
             }
             this.History.push(dataPro)
             });
