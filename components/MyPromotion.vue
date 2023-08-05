@@ -418,22 +418,21 @@ export default {
             console.log("add");
         },
         Delete() {
-            const db = firebase.firestore();
-            // console.log(data)
-            const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete().then(() => {
-                console.log("Document successfully deleted!");
-            })
-            .then((result) => {
+    const db = firebase.firestore();
+    const id_store_l = localStorage.getItem("id_store");
+    db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
+        .then(() => {
+            console.log("Document successfully deleted!");
+            setTimeout(() => {
                 window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-            // console.log("Delete");
+            }, 3000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
 
-            // alert("ลบProMotion : " + this.Pro.IDposts)
-        },
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+}
+,
         Add() {
             this.Pro.img = ""
             this.Pro.title = ""
