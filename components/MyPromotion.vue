@@ -416,21 +416,21 @@ export default {
             console.log("add");
         },
         Delete() {
-            const db = firebase.firestore();
-            const id_store_l = localStorage.getItem("id_store");
-            console.log("deleteeeeeeeeeeeeeeeeeeee" + this.Pro.IDposts)
-            db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
-                .then(() => {
-                    console.log("Document successfully deleted!");
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 5000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
+    const db = firebase.firestore();
+    const id_store_l = localStorage.getItem("id_store");
+    db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
+        .then(() => {
+            console.log("Document successfully deleted!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
 
-                })
-                .catch((error) => {
-                    console.error("Error removing document: ", error);
-                });
-        },
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+}
+,
         Add() {
             this.Pro.img = ""
             this.Pro.title = ""
