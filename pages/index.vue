@@ -72,8 +72,20 @@
                             <div class="col-8">
                                 <div class="row d-flex">
                                     <h4 style="margin-bottom:10px ; color: #01ad82" >ระดับการสะสม - พรีเมียม</h4>
-                                    <button type="button" class="btn rounded-5 fw-light" data-download="4"
-                                        @click="downloadImage('4.png')" style="background-color: #e1e4e2; color: #a19999">
+                                    <button v-if="bath >= 10000" type="button" class="btn rounded-5 fw-light" data-download="premium"
+                                        @click="downloadImage('premium.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 7000" type="button" class="btn rounded-5 fw-light" data-download="silver"
+                                        @click="downloadImage('silver.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 5000" type="button" class="btn rounded-5 fw-light" data-download="gold"
+                                        @click="downloadImage('gold.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 2000" type="button" class="btn rounded-5 fw-light" data-download="bronze"
+                                        @click="downloadImage('bronze.png')" style="background-color: #e1e4e2; color: #a19999">
                                         ดาวโหลดใบประกาศ
                                     </button>
                                 </div>

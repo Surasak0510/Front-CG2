@@ -39,13 +39,29 @@
                 </div>
                 <!-- {{ check }} -->
                 <div class="row mb-5 d-flex justify-content-end">
-                    <button type="button" class="btn btn-success w-25 rounded-5" @click=" postpoint()"
+                    <button type="button" class="btn btn-success w-25 rounded-5" @click=" postpoint() & $bvModal.show('AddRating')"
                         style="background-color: #00CC99; color: white; ">ต่อไป</button>
                 </div>
 
 
             </div>
         </div>
+
+        <!-- modal -->
+        <b-modal hide-footer hide-header centered id="AddRating">
+            <div class="row px-2 gap-3">
+                <strong>
+                    <h1 class="text-center color">ให้คะแนนแก่ทางร้านค้า</h1>
+                </strong>
+                <b-form-rating style="color: #00CC99;" v-model="rating" class="mx-0"></b-form-rating>
+                <p v-if="rating <= 1" class="text-center" style="color: red">ควรปรับปรุง</p>
+                <p v-else-if="rating <= 2" class="text-center" style="color: pink">คุณภาพค่อนข้างน้อย</p>
+                <p v-else-if="rating <= 3" class="text-center" style="color: yellow">พอใช้</p>
+                <p v-else-if="rating <= 4" class="text-center" style="color: green">คุณภาพดี</p>
+                <p v-else-if="rating <= 5" class="text-center" style="color: #0c68f2">คุณภาพดีเยี่ยม</p>
+                <button type="button" class="btn btn text-white" @click="Rating()" style="background-color: #00CC99;">ตกลง</button>
+            </div>
+        </b-modal>
     </div>
 </template>
 
@@ -64,6 +80,7 @@ export default {
     data() {
         return {
             UserPoint: 0,
+            rating: 5,
             sumpoint: 0,
             store: "",
             StoreImg: "https://cdn.discordapp.com/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
@@ -111,6 +128,10 @@ export default {
         }
     },
     methods: {
+        Rating() {
+            this.rating
+            window.location = `/activity?store=${this.store}`
+        },
         lastadd() {
             // console.log(this.check)
 
@@ -179,7 +200,8 @@ export default {
                                     })
                                         .then((result) => {
                                             console.log("Document successfully updated!");
-                                            window.location = `/activity?store=${this.store}`
+                                            
+                                            // window.location = `/activity?store=${this.store}`
                                         })
                                         .catch((error) => {
                                             console.error("Error updating document: ", error);

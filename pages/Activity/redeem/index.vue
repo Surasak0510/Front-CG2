@@ -23,7 +23,7 @@
             </div>
 
 
-            <div class="row p-3 rounded-4" style="background-color: #CCF5EA;">
+            <div class="row p-3 rounded-4 mb-5" style="background-color: #CCF5EA;">
                 <div class="col-12">
                     <div class="row p-3 mt-3" v-for="(item, index) in promotion" :key="index" @click="Active(item)"
                         style="">
@@ -107,13 +107,27 @@
                 </div>
 
                 <div class="d-flex">
-                    <button type="button" class="btn btn-success mx-auto" @click="Deletepoint()" style="background-color: #00CC99;">ยืนยัน</button>
+                    <button type="button" class="btn btn-success mx-auto" @click="$bvModal.show('AddRating') & $bvModal.hide('QRCoed')" style="background-color: #00CC99;">ยืนยัน</button>
                 </div>
 
 
             </b-modal>
 
-
+                    <!-- modal -->
+            <b-modal hide-footer hide-header centered id="AddRating">
+                <div class="row px-2 gap-3">
+                    <strong>
+                        <h1 class="text-center color">ให้คะแนนแก่ทางร้านค้า</h1>
+                    </strong>
+                    <b-form-rating style="color: #00CC99;" v-model="rating" class="mx-0"></b-form-rating>
+                    <p v-if="rating <= 1" class="text-center" style="color: red">ควรปรับปรุง</p>
+                    <p v-else-if="rating <= 2" class="text-center" style="color: pink">คุณภาพค่อนข้างน้อย</p>
+                    <p v-else-if="rating <= 3" class="text-center" style="color: yellow">พอใช้</p>
+                    <p v-else-if="rating <= 4" class="text-center" style="color: green">คุณภาพดี</p>
+                    <p v-else-if="rating <= 5" class="text-center" style="color: #0c68f2">คุณภาพดีเยี่ยม</p>
+                    <button type="button" class="btn btn text-white" @click="Rating() " style="background-color: #00CC99;">ตกลง</button>
+                </div>
+            </b-modal>
         </div>
     </div>
 </template>
@@ -127,6 +141,7 @@ export default {
             tel: "",
             time: "",
             store: "",
+            rating: 5,
             point: "0",
             img: "",
             title: "",
@@ -215,6 +230,10 @@ export default {
         }
     },
     methods: {
+        Rating() {
+            this.rating
+            window.location = `/activity?store=${this.storeID}`
+        },
         Active(data) {
             this.date = data.date
             this.img = data.img
@@ -231,9 +250,9 @@ export default {
             this.show = true
 
         },
-        Deletepoint() {
-            window.location = `/activity?store=${this.storeID}`
-        },
+        // Deletepoint() {
+        //     window.location = `/activity?store=${this.storeID}`
+        // },
         G_id_P() {
             // G_id
             const db = firebase.firestore();
