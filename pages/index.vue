@@ -323,7 +323,10 @@ export default {
         },
     },
     mounted() {
-           const id_store_l = localStorage.getItem("id_store") 
+        const id_store_l = localStorage.getItem("id_store") 
+        if (!id_store_l) {
+            window.location = "/login"
+        }
         var docRef = db.collection("register").doc(id_store_l);
         docRef.get().then((doc) => {
             if (doc.exists) {
@@ -341,6 +344,8 @@ export default {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+
+
     }
 }
 </script>
