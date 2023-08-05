@@ -2,13 +2,12 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">โปรโมชั่นของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
                 <b-button v-b-modal.Addpromo class="btn p-0 text-white rounded-5" @click="Add()"
-                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มกิจกรรม
-                    promotion</b-button>
+                    style="background-color: #01AD82; width: 180px; border: 1px solid #01AD82;">เพิ่มโปรโมชั่นของฉัน</b-button>
             </div>
         </div>
 
@@ -22,13 +21,16 @@
                         <div class="row">
                             <h1>{{ item.title }}</h1>
                         </div>
-                        <div class="row my-2 ">
+                        <div class="row  ">
                             <h5 class="fw-light break">{{ item.desc }}</h5>
+                        </div>
+                        <div class="row my-2">
+                            <h5 clss="fw-light">คะแนนที่ใช้แลกโปรโมชั่น : {{ item.point }}</h5>
                         </div>
                         <div class="row mt-auto">
                             <div class="col-12">
-                                <b-button v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
-                                <b-button v-b-modal.Delete @click="Active(item)">ลบ</b-button>
+                                <b-button class="bg-success" v-b-modal.ConfigPromo @click="Active(item)">แก้ไข</b-button>
+                                <b-button class="bg-danger" v-b-modal.DeletePromotion @click="Active(item)">ลบ</b-button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +39,7 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="ConfigPromo" centered hide-footer title="Edit promotion">
+        <b-modal id="ConfigPromo" centered hide-footer title="แก้ไขโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -96,6 +98,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex">
+                        <img class="w-50 mx-auto" :src="`${Pro.img}`" alt="">
+                    </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
                         <div class="input-group flex-nowrap">
@@ -109,14 +114,14 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="ConfigPromo() & $bvModal.hide('ConfigPromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
             </div>
         </b-modal>
 
-        <b-modal id="Addpromo" centered hide-footer title="Add Promotion">
+        <b-modal id="Addpromo" centered hide-footer title="เพิ่มโปรโมชั่น">
             <div class="row p-4 ">
                 <div class="col-12">
                     <div class="row">
@@ -175,6 +180,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex">
+                        <img class="w-50 mx-auto" :src="`${previewImage}`" alt="">
+                    </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
                         <div class="input-group flex-nowrap">
@@ -188,7 +196,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto"
+                        <button type="button" class="btn btn-success mx-auto"
                             @click="add_data() & $bvModal.hide('Addpromo')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -197,9 +205,9 @@
 
 
 
-        <b-modal id="Delete" size="lg" centered hide-footer hide-header title="BootstrapVue">
-            <div class="row">
-                <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
+        <b-modal id="DeletePromotion" size="lg" centered hide-footer hide-header >
+            <div class="row d-flex">
+                <img class="w-50 mx-auto" :src="`${Pro.img}`" alt="">
             </div>
             <div class="row">
                 <h3 class="text-center">คุณต้องการลบโปรโมชั่นการสะสมนี้ใช่หรือไม่!!</h3>
@@ -209,8 +217,7 @@
                     <!-- {{ StoreId }} -->
                     <button class="btn text-white" style="background-color: #BFE1D9;"
                         @click="$bvModal.hide('Delete')">ยกเลิก</button>
-                    <button class="btn color-main text-white"
-                        @click="Delete() & $bvModal.hide('Delete')">ยืนยัน</button>
+                    <button class="btn color-main text-white" @click="Delete() & $bvModal.hide('Delete')">ยืนยัน</button>
                 </div>
             </div>
         </b-modal>
@@ -234,7 +241,7 @@ export default {
                 date: "",
                 Count: "",
                 PerUser: "",
-                img: "",
+                img: "https://media.discordapp.net/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png",
                 desc: "",
                 IDposts: ""
             },
@@ -289,7 +296,7 @@ export default {
             //     {
             //         img: "https://media.discordapp.net/attachments/770885361094098947/1135944380864282704/4.png",
             //         title: "โปรไม่รับหลอด/แก้ว/ถุง/เอาแก้วมาเอง",
-            //         desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท หากไม่รับ (แล้วก็เป็นiconแสดงถึงไม่หลอด ไม่แก้ว ไม่ถุง)",
+            //         desc: "พกมาเองประหยัดกว่าาา ลด 10 บาท",
             //         dispoint: "500",
             //         Count: "200",
             //         PerUser: "1",
@@ -352,10 +359,14 @@ export default {
             //     id: this.StoreId
             // }
             // console.table(data)
+
+            if (this.previewImage != null) {
+                this.Pro.img = this.previewImage
+            }
             const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
             db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).update({
-                img: this.previewImage,
+                img: this.Pro.img,
                 title: this.Pro.title,
                 type: this.Pro.type,
                 desc: this.Pro.desc,
@@ -365,9 +376,11 @@ export default {
                 PerUser: this.Pro.PerUser,
                 StoreId: this.StoreId
             })
-            .then(() => {
-                console.log("Document successfully updated!");
-            });
+                .then((result) => {
+                    console.log("Document successfully updated!");
+                    window.location.reload();
+                    
+                });
 
 
             // const id_store_l = localStorage.getItem("id_store");
@@ -390,7 +403,7 @@ export default {
             // console.log("add");
 
 
-            
+
 
         },
         add_data() {
@@ -401,7 +414,7 @@ export default {
                 HeadPro: this.HeadPro,
                 img: this.previewImage,
                 title: this.Pro.title,
-                type: this.Pro.type,
+                type: "-",
                 desc: this.Pro.desc,
                 date: this.Pro.date,
                 point: this.Pro.point,
@@ -409,8 +422,8 @@ export default {
                 PerUser: this.Pro.PerUser,
                 StoreId: this.StoreId
             })
-                .then((docRef) => {
-                    // console.log("Document successfully written with ID: ", docRef.id);
+                .then((result) => {
+                    window.location.reload();
                 })
                 .catch((error) => {
                     // console.error("Error writing document: ", error);
@@ -421,12 +434,8 @@ export default {
     const db = firebase.firestore();
     const id_store_l = localStorage.getItem("id_store");
     db.collection(`/register/${id_store_l}/proposts/`).doc(this.Pro.IDposts).delete()
-        .then(() => {
-            console.log("Document successfully deleted!");
-            setTimeout(() => {
-                window.location.reload();
-            }, 3000); // ดีเลย์ 3 วินาที (3000 มิลลิวินาที)
-
+        .then((result) => {
+            window.location.reload();
         })
         .catch((error) => {
             console.error("Error removing document: ", error);
@@ -447,7 +456,7 @@ export default {
 
             // Get a reference to the Firestore database
 
-           
+
 
         },
         AddType() {
@@ -458,7 +467,7 @@ export default {
                 point: this.Type.point,
                 img: this.previewImage,
                 desc: this.Type.desc
-                
+
             }
             // console.table(data)
         },
@@ -473,23 +482,23 @@ export default {
         db.collection(`/register/${id_store_l}/proposts/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                // console.log(doc.id, " => ", doc.data());
+                // console.log(doc.data());
                 // this.promotion.push(doc.data())
-                
-                let dataPro =
-                    {
-                    id : doc.id,
-                    title : doc.data().title,
-                    desc : doc.data().desc,
-                    img : doc.data().img,
-                    date : doc.data().date,
-                    point : doc.data().point,
-                    Count : doc.data().Count,
-                    type : doc.data().type,
-                    PerUser : doc.data().PerUser
-                    }
 
-                    this.promotion.push(dataPro)
+                let dataPro =
+                {
+                    id: doc.id,
+                    title: doc.data().title,
+                    desc: doc.data().desc,
+                    img: doc.data().img,
+                    date: doc.data().date,
+                    point: doc.data().point,
+                    Count: doc.data().Count,
+                    type: doc.data().type,
+                    PerUser: doc.data().PerUser
+                }
+
+                this.promotion.push(dataPro)
             });
             // console.log('dadsadwdadw',this.promotion);
         });

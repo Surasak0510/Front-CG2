@@ -10,13 +10,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
-                                    <p class="text-center">ระดับคุณภาพร้าน</p>
+                                    <p class="text-center" style="margin-top: 10px;">ระดับคุณภาพร้าน</p>
                                 </div>
                                 <div class="row rounded-5">
                                     <b-form-rating v-model="Store.rating" variant="warning" class="rounded-5 w-75 mx-auto"
                                         style="background-color: #e1e4e2" readonly></b-form-rating>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 10px;">
                                     <p v-if="Store.rating <= 1" class="text-center" style="color: red">
                                         ควรปรับปรุง
                                     </p>
@@ -41,7 +41,7 @@
                         <div class="row mb-3 mt-3">
                             <div class="col-12 col-xl-4">
                                 <h1 class="m-0">{{ Store.name }}</h1>
-                                <p>ID : {{ Store.ID }}</p>
+                                <p style="font-size: 20px;">ID : {{ Store.ID }}</p>
                             </div>
                             <div class="col-12 col-xl-8">
                                 <div class="row rounded-4 p-3 m-0" style="background-color: #bfe1d9">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row py-3 mt-5">
-                            <h2>ยอดคะแนนสะสมการชดเชยคาร์บอนจากลูกค้าทั้งหมด</h2>
+                            <h4>ยอดคะแนนสะสมการชดเชยคาร์บอนจากลูกค้าทั้งหมด</h4>
                         </div>
                         <div class="row m-0">
                             <b-progress :value="Store.CR" max="100000" show-value variant="success" style="height: 50px"
@@ -61,7 +61,7 @@
                 <div class="row mt-3">
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-center">
                         <nuxt-link :to="`/CCStore?store=${Store.ID}`" heaf class="btn rounded-5 fw-bold"
-                            style="background-color: #fffb8f">Carbon Market
+                            style="background-color: #fffb8f">ตลาดคาร์บอน
                             <img style="height: 60px" src="~/static/icon/shop.png" alt="" /></nuxt-link>
                     </div>
                     <div class="col-12 col-md-4 my-3">
@@ -71,9 +71,21 @@
                             </div>
                             <div class="col-8">
                                 <div class="row d-flex">
-                                    <h4 style="color: #01ad82">ระดับการสะสม - พรีเมียม</h4>
-                                    <button type="button" class="btn rounded-5 fw-light" data-download="4"
-                                        @click="downloadImage('4.png')" style="background-color: #e1e4e2; color: #a19999">
+                                    <h4 style="margin-bottom:10px ; color: #01ad82" >ระดับการสะสม - พรีเมียม</h4>
+                                    <button v-if="bath >= 10000" type="button" class="btn rounded-5 fw-light" data-download="premium"
+                                        @click="downloadImage('premium.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 7000" type="button" class="btn rounded-5 fw-light" data-download="silver"
+                                        @click="downloadImage('silver.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 5000" type="button" class="btn rounded-5 fw-light" data-download="gold"
+                                        @click="downloadImage('gold.png')" style="background-color: #e1e4e2; color: #a19999">
+                                        ดาวโหลดใบประกาศ
+                                    </button>
+                                    <button v-else-if="bath >= 2000" type="button" class="btn rounded-5 fw-light" data-download="bronze"
+                                        @click="downloadImage('bronze.png')" style="background-color: #e1e4e2; color: #a19999">
                                         ดาวโหลดใบประกาศ
                                     </button>
                                 </div>
@@ -83,9 +95,9 @@
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-end">
                         <!-- <button type="button" class="btn rounded-5 fw-light" style="background-color: #579AFE; ">ระบุรหัสส่วนลด</button> -->
                         <b-button v-b-modal.modal-center @click="code = null" style="
-                background-color: #579afe;
+                background-color: #01ad82;
                 color: white;
-                border: 1px solid #579afe;
+                border: 1px solid #01ad82;
                 height: 35px;" 
                 class="btn rounded-5">ระบุรหัสส่วนลด</b-button>
                     </div>
@@ -95,10 +107,10 @@
 
         <div class="row m-0">
             <b-tabs class="" content-class="">
-                <b-tab title="My Promotion" active>
+                <b-tab title="โปรโมชั่นของฉัน" active>
                     <MyPromotion />
                 </b-tab>
-                <b-tab title="Type" >
+                <b-tab title="ตัวเลือก" >
                     <Type />
                 </b-tab>
                 <b-tab title="ประวัติสะสม">
@@ -108,12 +120,12 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="modal-center" centered title="Reward" hide-footer>
+        <b-modal id="modal-center" centered title="ระบุรหัสส่วนลด" hide-footer>
             <div class="row">
                 <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 200px" />
             </div>
             <div class="row">
-                <h5 class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h5>
+                <h class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h>
             </div>
             <div class="row mt-4">
                 <div class="input-group mb-3 w-50 mx-auto">
@@ -124,8 +136,8 @@
             </div>
             <div class="row mt-3">
                 <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('modal-center')"
-                    style="background-color: #0c68f2; width: 25%">
-                    confirm
+                    style="background-color: #01ad82; width: 25%">
+                    ยืนยัน
                 </button>
             </div>
         </b-modal>
@@ -164,11 +176,13 @@ export default {
 
                     if (doc.data().check !== false) {
                         this.$swal({
-                                                position: 'top-end',
+                                                // position: 'top-end',
                                                 icon: 'success',
-                                                title: 'complete the code',
-                                                showConfirmButton: false,
-                                                timer: 1500,
+                                                title: 'แลกโปรโมชั่นสำเร็จ',
+                                                confirmButtonColor: '#01ad82',
+                                                confirmButtonText: 'ตกลง'
+                                                // showConfirmButton: false,
+                                                // timer: 1500,
                                             })
 
                                             var washingtonRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
@@ -227,8 +241,10 @@ export default {
                                                                     else {
                                                                         this.$swal({
                                                                             icon: 'error',
-                                                                            title: 'No such code found',
-                                                                            text: 'Something went wrong!',
+                                                                            title: 'เกิดข้อผิดพลาดทางระบบ',
+                                                                            confirmButtonColor: '#01ad82',
+                                                                            confirmButtonText: 'ตกลง'
+                                                                            // text: 'Something went wrong!',
                                                                             // footer: '<a href="">Why do I have this issue?</a>'
                                                                         })
                                                                     }
@@ -283,8 +299,10 @@ export default {
       
                       this.$swal({
                     icon: 'error',
-                    title: 'No such code found',
-                    text: 'Something went wrong!',
+                    title: 'ขออภัยโค้ดนี้ถูกใช้ไปแล้ว',
+                    confirmButtonColor: '#01ad82',
+                    confirmButtonText: 'ตกลง'
+                    // text: 'Something went wrong!',
                     // footer: '<a href="">Why do I have this issue?</a>'
                 })
         
@@ -317,7 +335,10 @@ export default {
         },
     },
     mounted() {
-           const id_store_l = localStorage.getItem("id_store") 
+        const id_store_l = localStorage.getItem("id_store") 
+        if (!id_store_l) {
+            window.location = "/login"
+        }
         var docRef = db.collection("register").doc(id_store_l);
         docRef.get().then((doc) => {
             if (doc.exists) {
@@ -335,6 +356,8 @@ export default {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+
+
     }
 }
 </script>

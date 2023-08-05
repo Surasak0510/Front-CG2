@@ -2,11 +2,11 @@
     <div>
         <div class="row px-5 py-3 m-0 ">
             <div class="col-12 col-md-6">
-                <h1 class="">My Promotion</h1>
+                <h1 class="">ตัวเลือกของฉัน</h1>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <!-- <button type="button" class="btn p-0 text-white rounded-5 ms-auto" style="background-color: #01AD82; width: 180px;">เพิ่มกิจกรรม promotion</button> -->
-                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #28a745 ; width: 180px; border: 1px solid #28a745  ;">เพิ่มกิจกรรม Type</b-button>
+                <b-button v-b-modal.AddType class="btn p-0 text-white rounded-5" @click="Add()" style="background-color: #01AD82 ; width: 180px; border: 1px solid #01AD82  ;">เพิ่มตัวเลือก</b-button>
             </div>
         </div>
         <div class="row m-0 d-flex justify-content-center">
@@ -26,15 +26,15 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-12 d-flex justify-content-center">
-                        <b-button v-b-modal.AddType @click="Active(item)">แก้ไข</b-button>
-                        <b-button v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
+                        <b-button class="btn btn-success" v-b-modal.ConfigType @click="Active(item)">แก้ไข</b-button>
+                        <b-button class="btn btn-danger" v-b-modal.Delete  @click="Active(item)">ลบ</b-button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal -->
-        <b-modal id="AddType" centered hide-footer title="Add Type" >
+        <b-modal id="ConfigType" centered hide-footer title="เพิ่มตัวเลือก" >
             <div class="row p-4 " >
                 <div class="col-12">
                     <div class="row">
@@ -48,13 +48,13 @@
                             <div class="row">
                                 <label for="basic-url" class="form-label">ประเภท</label>
                                 <div class="input-group flex-nowrap">
-                                    <input type="text" class="form-control rounded-5" v-model="Type.type">
+                                    <input type="text" class="form-control rounded-5" v-model="Type.Type">
                                 </div>
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <label for="basic-url" class="form-label">จำนวนชิ้น/คะแนน</label>
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
                                 <div class="input-group flex-nowrap">
                                     <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
                                     <span class="input-group-text">=</span>
@@ -62,6 +62,62 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row my-3 d-flex">
+                        <img class="w-50 mx-auto" :src="`${Type.img}`" alt="">
+                    </div>
+                    <div class="row py-2">
+                        <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="file" ref="fileInput" class="form-control rounded-5" @input="pickFile">
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <label for="basic-url" class="form-label">รายละเอียดเพิ่มเติม</label>
+                        <div class="input-group flex-nowrap">
+                            <textarea  class="form-control rounded-5 p-3" v-model="Type.desc"></textarea>
+                        </div>
+                    </div>
+                    <!-- {{ Type }} -->
+                    <div class="row py-2">
+                        <button type="button" class="btn btn-success mx-auto" 
+                        @click="ConfigType() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
+                    </div>
+                </div>
+            </div>
+        </b-modal>
+
+        <b-modal id="AddType" centered hide-footer title="เพิ่มตัวเลือก" >
+            <div class="row p-4 " >
+                <div class="col-12">
+                    <div class="row">
+                        <label for="basic-url" class="form-label">ระบุชื่อเเคมเปญ</label>
+                        <div class="input-group flex-nowrap">
+                            <input type="text" class="form-control rounded-5" v-model="Type.title" >
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="basic-url" class="form-label">ประเภท</label>
+                                <div class="input-group flex-nowrap">
+                                    <input type="text" class="form-control rounded-5" v-model="Type.Type">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <label for="basic-url" class="form-label">โปรโมชั่น/คะแนน</label>
+                                <div class="input-group flex-nowrap">
+                                    <input type="text" class="form-control rounded-start-5" placeholder="ชิ้น" v-model="Type.count">
+                                    <span class="input-group-text">=</span>
+                                    <input type="text" class="form-control rounded-end-5" placeholder="คะแนน" v-model="Type.point">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3 d-flex">
+                        <img class="w-50 mx-auto" :src="`${previewImage}`" alt="">
                     </div>
                     <div class="row py-2">
                         <label for="basic-url" class="form-label">รูปโปรโมชัั่นสะสม / ไอคอน</label>
@@ -76,7 +132,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <button type="button" class="btn btn-primary mx-auto" 
+                        <button type="button" class="btn btn-success mx-auto" 
                         @click="Add_data() & $bvModal.hide('AddType')" style="width: 20%;">บันทึก</button>
                     </div>
                 </div>
@@ -84,11 +140,11 @@
         </b-modal>
 
         <b-modal id="Delete" size="lg" centered hide-footer hide-header >
-            <div class="row">
-                <img src="../static/Logo.png" alt="" class="w-50 mx-auto">
+            <div class="row d-flex">
+                <img class="w-50 mx-auto" :src="`${Type.img}`" alt="">
             </div>
             <div class="row">
-                <h3 class="text-center">คุณต้องการลบTypeการสะสมนี้ใช่หรือไม่!!</h3>
+                <h3 class="text-center">คุณต้องการลบตัวเลือกการสะสมนี้ใช่หรือไม่!!</h3>
             </div>
             <div class="row my-5">
                 <!-- {{ Type.Item_id }} -->
@@ -108,15 +164,17 @@ export default {
   name: 'Type',
       data() {
     return{
+        previewImage: null,
         ItemId: "",
         Type: {
                 title: "",
-                type: "",
-                count: "",
-                point: "",
-                img: "",
+                Type: "",
+                count: 0,
+                point: 0,
+                img: "https://media.discordapp.net/attachments/1118454709934637096/1135958714306793644/20230801_223136_0002-removebg-preview.png",
                 desc: "",
                 Item_id: "",
+                id: "",
             },
         TypeAll: [ ],
 
@@ -182,17 +240,18 @@ export default {
   methods: {
     Active(data) {
         this.Type.title = data.title,
-        this.Type.type = data.type,
+        this.Type.Type = data.Type,
         this.Type.count = data.count,
         this.Type.point = data.point,
         this.Type.img = data.img,
         this.Type.desc = data.desc,
-        this.Type.Item_id = data.Item_id
+        this.Type.Item_id = data.Item_id,
+        this.Type.id = data.id
     },
     AddType() {
         const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+            db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).update({
                 title: this.Type.title,
                 type : this.Type.type,
                 count: this.Type.count,
@@ -269,12 +328,14 @@ export default {
 
     },
     Add_data() {
+        // console.table(this.Type)
         const db = firebase.firestore();
             // Add a new document in collection "cities" with an automatically generated ID
             const id_store_l = localStorage.getItem("id_store");
             db.collection(`/register/${id_store_l}/type/`).add({
                 title: this.Type.title,
-                type : this.Type.type,
+                Type: this.Type,
+                type : "+",
                 count: this.Type.count,
                 point: this.Type.point,
                 img: this.previewImage,
@@ -282,28 +343,34 @@ export default {
                 Item_id: this.Type.Item_id
             })
                 .then((docRef) => {
-                    // console.log("Document successfully written with ID: ", docRef.id);
+                    console.log("Document successfully written with ID: ", docRef.id);
+                    window.location.reload();
                 })
                 .catch((error) => {
                     // console.error("Error writing document: ", error);
                 });
             // console.log("add");
     },
-    ConfigPromo() {
+    ConfigType() {
+
+            if (this.previewImage != null) {
+                this.Type.img = this.previewImage
+            }
 
             const db = firebase.firestore();
             const id_store_l = localStorage.getItem("id_store");
-            db.collection(`/register/${id_store_l}/type/`).doc(this.type.id).update({
+            db.collection(`/register/${id_store_l}/type/`).doc(this.Type.id).update({
                 title: this.Type.title,
-                type : this.Type.type,
+                Type : this.Type.Tpye,
                 count: this.Type.count,
                 point: this.Type.point,
                 img: this.previewImage,
                 desc: this.Type.desc,
                 Item_id: this.Type.Item_id
             })
-            .then(() => {
+            .then((result) => {
                 console.log("Document successfully updated!");
+                window.location.reload();
             });
 
 
@@ -316,19 +383,22 @@ export default {
         db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
+                // console.log(doc.data())
                 let dataPro ={
                 id : doc.id,
-                title: this.Type.title,
-                type : this.Type.type,
-                count: this.Type.count,
-                point: this.Type.point,
-                img: this.Type.img,
-                desc: this.Type.desc,
-                Item_id: this.Type.Item_id
+                title: doc.data().title,
+                type : doc.data().type,
+                count: doc.data().count,
+                point: doc.data().point,
+                img: doc.data().img,
+                desc: doc.data().desc,
+                Item_id: doc.data().Item_id
             }
             this.TypeAll.push(dataPro)
+            // console.log(this.TypeAll)
             });
         });
+        // console.log("Testtttttttttt",this.TypeAll)
     }
 }
 </script>

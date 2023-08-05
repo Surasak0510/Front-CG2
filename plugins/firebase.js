@@ -4,8 +4,6 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import 'firebase/compat/database';
 
-
-
 const firebaseConfig = {
     apiKey: "AIzaSyDMUrp1PHdaodv34bMXzY9gtHA2ve5YwJw",
     authDomain: "carbongo-b272c.firebaseapp.com",

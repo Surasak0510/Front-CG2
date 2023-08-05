@@ -84,20 +84,24 @@ export default {
 
         const id_store_l = localStorage.getItem("id_store");
         const db = firebase.firestore();
-        db.collection(`/register/${id_store_l}/users/`).get().then((querySnapshot) => {
+        db.collection(`/register/${id_store_l}/hispoint/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-
+                // console.log(doc.data());
+                // let datahis = doc
+                // let history = []
+                // datahis.forEach((data) => {
+                //     console.log("---------",data);
+                // })
                 let dataPro ={
-                id : doc.id,
-                telUser: doc.data().telUser,
-                point:  doc.data().point,
-                type:   doc.data().type,
-                time:   doc.data().time,
-                Detail:     doc.data().Detail
+                history: doc.data().hispoint,
+                telUser: doc.data().tel_user,
+                time:   doc.data().time_type,
+                type: doc.data().type
             }
             this.History.push(dataPro)
             });
-        });
+        })
+        // console.log("Hissssssssssssssss",this.History)
   }
 }
 </script>

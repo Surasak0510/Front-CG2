@@ -2,14 +2,23 @@
     <div>
         <div class="row mx-0">
             <div class="col-6">
-                <h1 class="color text-center" style="font-size: 4vw;">Carbon Market</h1>
+                <h1 class="color text-center" style="font-size: 4vw;">ตลาดคาร์บอน</h1>
             </div>
-            <div class="col-6 d-flex">
+            <!-- <div class="col-6 d-flex">
                 <button class="btn btn-link ms-auto h-50 mt-auto" style="box-shadow: none;">ตรวจสอบสถานะการชำระ</button>
-            </div>
+            </div> -->
         </div>
         <div class="row mx-0 py-5 " style="background-color: #CCF5EA;">
             <div class="col-12">
+                <div class="row mx-0 my-3">
+                    <h5 style="text-align: center;">
+                        ราคาคาร์บอนเครดิตมีความผันผวนอยู่ตลอดเวลา
+                    </h5>
+                    <br>
+                    <h5 style="text-align: center;">
+                        ผู้ที่ทำการซื้อพร้อมที่จะยอมรับความแปรปรวนของราคาเเล้ว
+                    </h5>
+                </div>
                 <div class="row">
                     <div class="col-12 col-md-6 d-flex">
                         <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 30%;">
@@ -31,11 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mx-0 my-3">
-                    <h5>
-                        ราคาคาร์บอนเคดิตมีความ ผัวผวนอยู่ตลอดเวลา ผู้ที่ทำการซื้อพร้อมที่จะยอมรับคามแปรปวนของราคาเเล้ว
-                    </h5>
-                </div>
+                
                 <div class="row mx-0">
                     <div class="containar">
                         <div class="row mx-0">
@@ -51,7 +56,7 @@
                             </div>
                             <div class="col-12 col-md-2">
                                 <div class="row mx-0 d-flex align-items-center">
-                                    <h1 class="text-center">=</h1>
+                                    <h1 class="text-center" style="margin-top: 50px;">=</h1>
                                 </div>
                             </div>
                             <div class="col-12 col-md-5">
@@ -82,7 +87,7 @@
                         <img src="~/static/Logo.png" alt="" class="w-50 mx-auto">
                     </div>
                     <div class="row">
-                        <h2 class="text-center">คุณต้องการซื้อคาร์บอนเคดิตใช่หรือไม่</h2>
+                        <h2 class="text-center">คุณต้องการซื้อคาร์บอนเครดิตใช่หรือไม่</h2>
                     </div>
                     <div class="row">
                         <p class="text-center fs-4">จำนวน {{ CC }} หน่วย</p>

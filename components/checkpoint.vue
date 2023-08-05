@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #AFCDFA; color: #0C68F2; border: 2px solid #AFCDFA;">เช็คคะแนน</b-button>
+        <!-- <b-button  v-b-modal.modal-1 type="button" class="btn rounded-5" style="background-color: #AFCDFA; color: #0C68F2; border: 2px solid #AFCDFA;">เช็คคะแนน</b-button> -->
 
         <!-- Modal -->
         <b-modal id="modal-1" hide-footer centered  title="ตรวจสอบจำนวนคะแนนสะสม">
@@ -12,7 +12,7 @@
                         <div class="input-group w-100">
                             <input type="text" class="form-control rounded-4" v-model="UNumber">
                         </div>
-                        {{ UNumber }}
+                        <!-- {{ UNumber }} -->
                     </div>
                 </div>
                 <div class="row my-3 w-100">
@@ -52,7 +52,7 @@ export default {
 
             docRef.get().then((doc) => {
                 if (doc.exists) {
-                    this.point = doc.data().point;
+                    this.point = doc.data().point;//this
                 } else {
                     console.log("No such document!");
                 }
