@@ -132,7 +132,8 @@ export default {
             db.collection(`register/${this.store}/hispoint`).add({
                 hispoint: this.check,
                 time_type: new Date().toString(),
-                tel_user: this.tel
+                tel_user: this.tel,
+                type: "+"
             })
             .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
