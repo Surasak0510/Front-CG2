@@ -154,6 +154,7 @@ export default {
                 hispoint: this.check,
                 time_type: new Date().toString(),
                 tel_user: this.tel,
+                sumpoint: this.sumpoint,
                 type: "+"
             })
             .then((docRef) => {

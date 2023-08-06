@@ -93,10 +93,11 @@ export default {
                 //     console.log("---------",data);
                 // })
                 let dataPro ={
-                history: doc.data().hispoint,
+                point: doc.data().sumpoint,
                 telUser: doc.data().tel_user,
                 time:   doc.data().time_type,
-                type: doc.data().type
+                type: doc.data().type,
+                Detail: ''
             }
             this.History.push(dataPro)
             });
