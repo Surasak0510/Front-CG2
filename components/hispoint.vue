@@ -78,6 +78,15 @@ export default {
         // ]
     }
   },
+  methods: {
+    checkMembers() {
+        
+        this.History
+        for (data in History) {
+            // console.log(data)
+        }
+    }
+  },
   mounted() {
         this.storeID = this.$route.query.store
 
@@ -102,6 +111,7 @@ export default {
             this.History.push(dataPro)
             });
         })
+        this.checkMembers()
         // console.log("Hissssssssssssssss",this.History)
   }
 }
