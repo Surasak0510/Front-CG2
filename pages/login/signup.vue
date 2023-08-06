@@ -181,7 +181,15 @@ export default {
         submit(event){
             // event.preventDefault();
             // console.log(this.data)
-        
+            if(this.name == "" || this.type == "" || this.province == "" || this.district == "" || this.parish == "" || this.number == "" || this.email == "" || this.password == "" || this.passwordCon == "" ){
+                alert("Please select all fields")
+                return;
+            }
+
+            if(this.password != this.passwordCon){
+                alert("รหัสผ่านไม่ตรงกัน")
+                return;
+            }
             //register
             console.log(this.data.email, this.data.password)
             firebase.auth().createUserWithEmailAndPassword(this.data.email, this.data.password)
@@ -209,7 +217,7 @@ export default {
                     db.collection("g_id").doc('g_id').set({
                         uid: uid_data.uid 
                     })
-                    .then(() => {
+                    .then((readonly) => {
                         console.log("Document successfully written!");
                     })
                     .catch((error) => {
@@ -228,26 +236,28 @@ export default {
                         parish:     this.data.parish,
                         number:     this.data.number,  
                     })
-                    .then(() => {
+                    .then((r) => {
                         console.log("Document successfully written!");
                         // ทำการอัปเดต photoURL
                         
                         user.updateProfile({
                             displayName: uid_data.uid
                         })
-                        .then(() => {
+                        .then((r) => {
                         // การอัปเดตสำเร็จ
+                        localStorage.setItem("id_store", uid_data.uid);
+                        const id_store_l = localStorage.getItem("id_store");
+                        
+                        if(id_store_l !== null){ {
+                            window.location = "/login"
+                        }
+                      }
                         })
                         .catch((error) => {
                         // เกิดข้อผิดพลาดในการอัปเดต
                         });
 
-                        localStorage.setItem("id_store", uid_data.uid);
-                        const id_store_l = localStorage.getItem("id_store");
-                        // if(id_store_l !== null){ {
-                            window.location = "/login"
-                    //     }
-                    //   }
+                        
                     })
                     .catch((error) => {
                         console.error("Error writing document: ", error);

@@ -46,7 +46,7 @@
     
                                         <div class="col d-flex justify-content-end">
                                             <!-- Simple link -->
-                                            <a href="#!" class="text-end" style="color: #A19999;">ลืมรหัสผ่าน</a>
+                                            <a href="#!" @click="resetpasswordEmail(); " class="text-end" style="color: #A19999;">ลืมรหัสผ่าน</a>
                                         </div>
     
                                     </div>
@@ -102,12 +102,12 @@ export default {
                 // Signed in
                 var user = userCredential.user;
                 // console.log(user)
-                console.log();
+                console.log(user.displayName);
 
                 localStorage.setItem("id_store", user.displayName);
 
                 const id_store_l = localStorage.getItem("id_store");
-                        if(id_store_l !== null){ {
+                        if(id_store_l != null){ {
                             window.location = "/";
                         }
                     }
@@ -118,6 +118,24 @@ export default {
                 console.log(errorMessage);
                 console.log(errorCode);
             });
+        },
+        resetpasswordEmail()
+        {   
+            
+
+            firebase.auth().sendPasswordResetEmail('arthittapoomwan@gmail.com')
+            .then(() => {
+                // Password reset email sent!
+                console.log('Password reset email sent!');
+                // ..
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ..
+            });
+
+
         },
         login_google() {
             var provider = new firebase.auth.GoogleAuthProvider();
