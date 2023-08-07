@@ -13,7 +13,7 @@
                         <div class="col-8">
                             <div class="row d-flex align-content-center flex-wrap h-100">
                                 <strong>
-                                    <h1 class="text-center" style="color: #585858; font-size: 250%;">{{ point }}</h1>
+                                    <h1 class="text-center" style="color: #585858; font-size: 250%;">{{ Upoint }}</h1>
                                 </strong>
                                 <h3 class="text-center" style="color: #585858; font-size: 250%;">Balance</h3>
                             </div>
@@ -61,7 +61,7 @@
                         <strong>
                             <h1>{{ title }}</h1>
                         </strong>
-                        <h3>ใช้คะแนนแลก {{ dispoint }} คะแนน</h3>
+                        <h3>ใช้คะแนนแลก {{ point }} คะแนน</h3>
                     </div>
                     <div class="row mx-auto p-2 rounded-4 my-3" style="background-color: #CCF5EA;">
                         <h3 class="m-0 text-center" style="color: #01AD82;">ใช้ได้ภายในวัน {{ date }}</h3>
@@ -142,13 +142,13 @@ export default {
             time: "",
             store: "",
             rating: 5,
-            point: "0",
+            Upoint: 0,
             img: "",
             title: "",
             desc: "",
             id: "",
             date: "",
-            dispoint: "",
+            point: "",
             detail: "",
             storeID: "",
             promotion: [],
@@ -251,7 +251,7 @@ export default {
             this.img = data.img
             this.title = data.title
             this.desc = data.desc
-            this.dispoint = data.dispoint
+            this.point = data.point
             this.id = data.id
             this.detail = data.detail
         },
@@ -325,7 +325,7 @@ export default {
         docRef.get().then((doc) => {
             if (doc.exists) {
                 // console.log("Document data:", doc.data());
-                this.point = doc.data().point
+                this.Upoint = doc.data().point
 
             } else {
                 // doc.data() will be undefined in this case
