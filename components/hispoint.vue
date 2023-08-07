@@ -78,6 +78,15 @@ export default {
         // ]
     }
   },
+  methods: {
+    checkMembers() {
+        
+        this.History
+        for (data in History) {
+            // console.log(data)
+        }
+    }
+  },
   mounted() {
         this.storeID = this.$route.query.store
 
@@ -93,14 +102,16 @@ export default {
                 //     console.log("---------",data);
                 // })
                 let dataPro ={
-                history: doc.data().hispoint,
+                point: doc.data().sumpoint,
                 telUser: doc.data().tel_user,
                 time:   doc.data().time_type,
-                type: doc.data().type
+                type: doc.data().type,
+                Detail: ''
             }
             this.History.push(dataPro)
             });
         })
+        this.checkMembers()
         // console.log("Hissssssssssssssss",this.History)
   }
 }

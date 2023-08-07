@@ -231,8 +231,20 @@ export default {
     },
     methods: {
         Rating() {
-            this.rating
-            window.location = `/activity?store=${this.storeID}`
+            // this.rating
+            const db = firebase.firestore();
+            // Add a new document in collection "cities"
+            db.collection(`register/${this.storeID}/Rating`).add({
+                rating: this.rating
+                
+            })
+            .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            window.location = `/activity?store=${this.store}`
+             })
+             .catch((error) => {
+              console.error("Error adding document: ", error);
+              });
         },
         Active(data) {
             this.date = data.date
@@ -267,7 +279,7 @@ export default {
                     db.collection("g_id_P").doc('g_id_P').set({
                         uid: uid_data.uid 
                     })
-                    .then(() => {
+                    .then((docRef) => {
                         console.log("Document successfully written!");
                     })
                     .catch((error) => {
@@ -283,7 +295,7 @@ export default {
                         uid_p: this.id,
                         tel: this.tel
                     })
-                    .then(() => {
+                    .then((docRef) => {
                         console.log("Document successfully written!");
                     })
                     .catch((error) => {

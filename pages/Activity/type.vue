@@ -130,7 +130,21 @@ export default {
     methods: {
         Rating() {
             this.rating
+            console.log(this.rating)
+            const db = firebase.firestore();
+            // Add a new document in collection "cities"
+            db.collection(`register/${this.store}/Rating`).add({
+                rating: this.rating
+                
+            })
+            .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
             window.location = `/activity?store=${this.store}`
+             })
+             .catch((error) => {
+              console.error("Error adding document: ", error);
+              });
+                        
         },
         lastadd() {
             // console.log(this.check)
@@ -154,6 +168,7 @@ export default {
                 hispoint: this.check,
                 time_type: new Date().toString(),
                 tel_user: this.tel,
+                sumpoint: this.sumpoint,
                 type: "+"
             })
             .then((docRef) => {

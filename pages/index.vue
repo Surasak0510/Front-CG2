@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-12 col-md-4 my-3 d-flex justify-content-end">
                         <!-- <button type="button" class="btn rounded-5 fw-light" style="background-color: #579AFE; ">ระบุรหัสส่วนลด</button> -->
-                        <b-button v-b-modal.modal-center @click="code = null" style="
+                        <b-button v-b-modal.checkCode @click="code = null" style="
                 background-color: #01ad82;
                 color: white;
                 border: 1px solid #01ad82;
@@ -120,12 +120,12 @@
         </div>
 
         <!-- Modal -->
-        <b-modal id="modal-center" centered title="ระบุรหัสส่วนลด" hide-footer>
+        <b-modal id="checkCode" centered title="ระบุรหัสส่วนลด" hide-footer>
             <div class="row">
                 <img class="mx-auto" src="~/static/Logo.png" alt="" style="width: 200px" />
             </div>
             <div class="row">
-                <h class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h>
+                <h2 class="text-center">กรุณากรอกรหัสส่วนลดของลูกค้า</h2>
             </div>
             <div class="row mt-4">
                 <div class="input-group mb-3 w-50 mx-auto">
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('modal-center')"
+                <button type="button" class="btn text-white mx-auto" @click="checkcode() & $bvModal.hide('checkCode')"
                     style="background-color: #01ad82; width: 25%">
                     ยืนยัน
                 </button>
@@ -151,7 +151,7 @@ export default {
     layout: 'store',
     data() {
         return {
-            rank : null,
+            rank : 0,
             code: null,
             bath: "10000",
             Store: {
@@ -166,6 +166,11 @@ export default {
     },
     methods: {
         checkcode() {
+
+
+
+
+
 
         var docRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
 
@@ -227,7 +232,21 @@ export default {
                                                                     return washingtonRef.update({
                                                                         point: sump.toString()
                                                                     })
-                                                                    .then(() => {
+                                                                    .then((r) => {
+                                                                        // const db = firebase.firestore();
+                                                                            db.collection(`register/${this.Store.ID}/hispoint`).add({
+                                                                                time_type: new Date().toString(),
+                                                                                tel_user: tel_d,
+                                                                                sumpoint: Number (point_p),
+                                                                                type: "-"
+                                                                            })
+                                                                            .then((docRef) => {
+                                                                            console.log("Document written with ID: ", docRef.id);
+                                                                            })
+                                                                            .catch((error) => {
+                                                                            console.error("22Error adding document: ", error);
+                                                                            });
+
                                                                         console.log("Document successfully updated!");
                                                                     })
                                                                     .catch((error) => {
@@ -316,6 +335,7 @@ export default {
 
            
         },
+        
         downloadImage(fileName) {
             const imageSrc = `/Certi/${fileName}` // กำหนดที่อยู่ของรูปภาพ
 
@@ -335,7 +355,33 @@ export default {
         },
     },
     mounted() {
-        const id_store_l = localStorage.getItem("id_store") 
+        const rating_d = [];
+  const id_store_l = localStorage.getItem("id_store");
+
+  db.collection(`register/${id_store_l}/Rating/`).get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.data());
+
+        rating_d.push(doc.data().rating);
+      });
+
+      // คำนวณค่าเฉลี่ยของอาร์เรย์ rating_d
+      const totalRating = rating_d.length > 0 ? rating_d.reduce((acc, cur) => acc + cur) : 0;
+      const averageRating = totalRating / rating_d.length;
+      console.log(averageRating);
+      this.Store.rating = averageRating
+    })
+    .catch((error) => {
+      console.log("Error getting documents:", error);
+    });
+        
+
+
+
+
+
         if (!id_store_l) {
             window.location = "/login"
         }
