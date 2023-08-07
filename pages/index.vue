@@ -151,7 +151,7 @@ export default {
     layout: 'store',
     data() {
         return {
-            rank : 0,
+            rank : 5,
             code: null,
             bath: "10000",
             Store: {
@@ -159,18 +159,13 @@ export default {
                 img: 'https://media.discordapp.net/attachments/1118454709934637096/1135941002725687336/20230801_210955_0000.png',
                 loc: '89,89/1-89/3 Highway No. 3, Sai Mai Subdistrict, Sai Mai District, Bangkok, Bangkok 10220',
                 ID: '100516',
-                rating: 4.5,
+                rating: 5,
                 CR: 65000,
             },
         }
     },
     methods: {
         checkcode() {
-
-
-
-
-
 
         var docRef = db.collection(`/register/${this.Store.ID}/g_uid_p/`).doc(this.code);
 
@@ -367,11 +362,14 @@ export default {
         rating_d.push(doc.data().rating);
       });
 
-      // คำนวณค่าเฉลี่ยของอาร์เรย์ rating_d
-      const totalRating = rating_d.length > 0 ? rating_d.reduce((acc, cur) => acc + cur) : 0;
-      const averageRating = totalRating / rating_d.length;
-      console.log(averageRating);
-      this.Store.rating = averageRating
+      if (rating_d.length > 0) {
+          // คำนวณค่าเฉลี่ยของอาร์เรย์ rating_d
+          const totalRating = rating_d.length > 0 ? rating_d.reduce((acc, cur) => acc + cur) : 0;
+          const averageRating = totalRating / rating_d.length;
+        //   console.log(averageRating);
+          this.Store.rating = averageRating
+      }
+
     })
     .catch((error) => {
       console.log("Error getting documents:", error);
