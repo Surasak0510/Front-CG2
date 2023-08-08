@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row m-0 d-flex justify-content-center">
-            <div class="col-3 rounded-5 m-2" style="background-color: #CCF5EA;" v-for="(item , index) in TypeAll" :key="index">
+            <div class="col-5 col-md-3 rounded-5 m-2" style="background-color: #CCF5EA;" v-for="(item , index) in TypeAll" :key="index">
                 <div class="row d-flex">
                     <img :src="item.img" alt="" class="w-50 mx-auto">
                 </div>
