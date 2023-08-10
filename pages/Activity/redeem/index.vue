@@ -337,8 +337,8 @@ export default {
 
 
 
-        const id_store_l = localStorage.getItem("id_store");
-        db.collection(`/register/${id_store_l}/proposts/`).get().then((querySnapshot) => {
+        // const id_store_l = localStorage.getItem("id_store");
+        db.collection(`/register/${this.storeID}/proposts/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 // console.log(doc.id, " => ", doc.data());

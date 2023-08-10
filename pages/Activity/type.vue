@@ -286,9 +286,9 @@ export default {
     
 
 
-    const id_store_l = localStorage.getItem("id_store");
+    // const id_store_l = localStorage.getItem("id_store");
         // const db = firebase.firestore();
-        db.collection(`/register/${id_store_l}/type/`).get().then((querySnapshot) => {
+        db.collection(`/register/${this.store}/type/`).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
                 // console.log(doc.data())
