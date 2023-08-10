@@ -240,7 +240,7 @@ export default {
             })
             .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
-            window.location = `/activity?store=${this.store}`
+            window.location = `/activity?store=${this.storeID}`
              })
              .catch((error) => {
               console.error("Error adding document: ", error);

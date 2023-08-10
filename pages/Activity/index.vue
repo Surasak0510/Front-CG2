@@ -12,16 +12,22 @@
             <div class="row rounded-5 p-5 my-5" style="background-color: #ECF0EE;">
                 <div class="col-12">
                     <div class="row rounded-5 p-4 position-relative" style="background-color: #66EDCB;  border: 5px solid white;">
-                        <div class="col-12 col-md-4 d-flex justify-content-center ms-2 me-3">
-                            <img class="rounded-5" :src="Store.img" alt="" style="width: 20vh;">
-                        </div>
-                        <div class="col">
+                        <div class="col-12">
                             <div class="row">
-                                <h1 class="fw-bold" style="color: #0A755A;">{{ Store.name }}</h1>
-                                <h5 class="fw-bold" style="color: #0A755A;">{{ Store.loc }}</h5>
+                                <p class=" text-end fw-bold" style="top: 1vh; right: 2vh; font-size: x-large; color: #0A755A;">ID : {{ Store.ID }}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-4 d-flex justify-content-center ms-2 me-3">
+                                    <img class="rounded-5" :src="Store.img" alt="" style="width: 20vh;">
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <h1 class="fw-bold" style="color: #0A755A;">{{ Store.name }}</h1>
+                                        <h5 class="fw-bold" style="color: #0A755A;">{{ Store.loc }}</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p class="position-absolute text-end fw-bold" style="top: 1vh; right: 2vh; font-size: x-large; color: #0A755A;">ID : {{ Store.ID }}</p>
                     </div>
                     <div class="row my-4" style="border-bottom: 1px solid #A19999;">
                     </div>
